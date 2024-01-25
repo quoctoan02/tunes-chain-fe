@@ -31,3 +31,44 @@ export interface IPlaylistContext {
 		updatedObj: Partial<PlaylistContextState>
 	) => void
 }
+
+export interface SongContextState {
+  selectedSongId?: string;
+  selectedSong: SpotifyApi.TrackObjectFull | null;
+  isPlaying: boolean;
+  volume: number;
+  deviceId: string | null;
+}
+
+export interface ISongContext {
+  songContextState: SongContextState;
+  dispatchSongAction: Dispatch<SongReducerAction>;
+}
+
+export enum SongReducerActionType {
+  SetDevice = "SetDevice",
+  ToggleIsPlaying = "ToggleIsPlaying",
+  SetCurrentPlayingSong = "SetCurrentPlayingSong",
+  ChangeVolume = "ChangeVolume",
+}
+
+export type SongReducerAction =
+  | {
+      type: SongReducerActionType.SetDevice;
+      payload: Pick<SongContextState, "deviceId" | "volume">;
+    }
+  | {
+      type: SongReducerActionType.ToggleIsPlaying;
+      payload: Pick<SongContextState, "isPlaying">;
+    }
+  | {
+      type: SongReducerActionType.SetCurrentPlayingSong;
+      payload: Pick<
+        SongContextState,
+        "selectedSong" | "selectedSongId" | "isPlaying"
+      >;
+    }
+  | {
+      type: SongReducerActionType.ChangeVolume;
+      payload: Pick<SongContextState, "volume">;
+    };

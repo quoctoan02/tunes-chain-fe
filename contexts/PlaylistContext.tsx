@@ -41,15 +41,21 @@ const PlaylistContextProvider = ({ children }: { children: ReactNode }) => {
 	}
 
 	useEffect(() => {
-		const getUserPlaylists = async () => {
-			const userPlaylistResponse = await spotifyApi.getUserPlaylists()
-			updatePlaylistContextState({ playlists: userPlaylistResponse.body.items })
-		}
+    const getUserPlaylists = async () => {
+      const res = await spotifyApi.getUserPlaylists();
 
-		if (spotifyApi.getAccessToken()) {
-			getUserPlaylists()
-		}
-	}, [session, spotifyApi])
+      if (!res.body) return;
+
+      updatePlaylistContextState({
+        playlists: res.body.items,
+      });
+      console.log("🚀 ~ getUserPlaylists ~ res.body.items:", res.body.items);
+    };
+
+    if (spotifyApi.getAccessToken()) {
+      getUserPlaylists();
+    }
+  }, [spotifyApi, session]);
 
 	const playlistContextProviderData = {
 		playlistContextState,
