@@ -1,0 +1,7 @@
+{
+  "Print to custom hook": {
+    "prefix": "tshook",
+    "body": ["", "export const use${1:Hook} = (${2}) => {", "  ${3}", " return {}", "}"],
+    "description": "Print to custom hook with ts"
+  }
+}
