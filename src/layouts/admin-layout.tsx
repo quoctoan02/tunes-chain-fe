@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom"
 
 interface ArtistLayoutProps {}
 
-const DefaultLayout: FC<ArtistLayoutProps> = () => {
+const ArtistLayout: FC<ArtistLayoutProps> = () => {
   return (
     <div className="flex h-full flex-col">
       <div className="flex h-full">
@@ -19,4 +19,4 @@ const DefaultLayout: FC<ArtistLayoutProps> = () => {
   )
 }
 
-export default DefaultLayout
+export default ArtistLayout

@@ -6,12 +6,31 @@ export const routePath = {
   comingSoon: "/coming-soon",
   notFound: "*",
   search: "/search",
-  likedSongs: "liked/songs"
+  likedSongs: "liked/songs",
+  artist: "artist/:id",
+  album: "album/:id",
+} as const
+
+export const artistRoutePath = {
+  home: "/artist/home",
+  profile: "/artist/profile",
+  myMusic: "/artist/my-music",
+  stats: "/artist/stats",
+  audience: "/artist/audience",
+} as const
+
+export const adminRoutePath = {
+  home: "/",
+  translation: "/translation",
+  comingSoon: "/coming-soon",
+  notFound: "*",
+  search: "/search",
+  likedSongs: "liked/songs",
 } as const
 
 export const routes: BaseRoute[] = [
   { label: "Home", to: routePath.home },
   { label: "Translation", to: routePath.translation },
   { label: "Coming Soon", to: routePath.comingSoon, isComingSoon: true },
-  { label: "Search", to: routePath.search},
+  { label: "Search", to: routePath.search },
 ]

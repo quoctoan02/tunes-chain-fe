@@ -1,6 +1,6 @@
 import DefaultLayout from "@/layouts/default-layout"
 import { RouteObject, useRoutes } from "react-router-dom"
-import { routePath } from "./routes"
+import { artistRoutePath, routePath } from "./routes"
 import HomePage from "@/pages/user/home"
 import TranslationPage from "@/pages/translation"
 import NotFoundPage from "@/pages/not-found"
@@ -8,7 +8,8 @@ import EmptyLayout from "@/layouts/empty-layout"
 import { FC } from "react"
 import SearchPage from "@/pages/user/search"
 import LikedSongsPage from "@/pages/user/liked"
-
+import ArtistLayout from "@/layouts/artist-layout"
+import AdminHomePage from "@/pages/artist/home"
 
 interface AppRoutesProps {}
 
@@ -21,6 +22,15 @@ const routes: RouteObject[] = [
       { path: routePath.translation, element: <TranslationPage /> },
       { path: routePath.search, element: <SearchPage /> },
       { path: routePath.likedSongs, element: <LikedSongsPage /> },
+    ],
+  },
+  {
+    element: <ArtistLayout />,
+    children: [
+      { path: artistRoutePath.home, element: <AdminHomePage /> },
+      { path: artistRoutePath.myMusic, element: <TranslationPage /> },
+      { path: artistRoutePath.profile, element: <SearchPage /> },
+      { path: artistRoutePath.stats, element: <LikedSongsPage /> },
     ],
   },
 

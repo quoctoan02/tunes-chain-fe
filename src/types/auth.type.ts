@@ -24,3 +24,9 @@ export interface User extends UserInfo {
   refreshUserInfo(): void
   reset(): void
 }
+
+export enum Role {
+  Admin = "admin",
+  Artist = "artist",
+  User = "user",
+}

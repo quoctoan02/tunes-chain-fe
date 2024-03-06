@@ -2,8 +2,11 @@ import { useMemo } from "react"
 import { BiSearch } from "react-icons/bi"
 import { HiHome } from "react-icons/hi"
 import { useLocation } from "react-router-dom"
+import { MdOutlinePeopleAlt, MdLibraryMusic } from "react-icons/md"
+import { IoIosStats } from "react-icons/io"
 import SidebarItem from "./sidebar-item"
 import Box from "./box"
+import { artistRoutePath } from "@/routes/routes"
 interface SidebarProps {}
 
 const Sidebar: React.FC<SidebarProps> = () => {
@@ -13,26 +16,26 @@ const Sidebar: React.FC<SidebarProps> = () => {
       {
         icon: HiHome,
         label: "Home",
-        active: !["my-music", "/audience", "/stats"].includes(pathname),
-        path: "/",
+        active: pathname === artistRoutePath.home,
+        path: artistRoutePath.home,
       },
       {
-        icon: BiSearch,
+        icon: MdLibraryMusic,
         label: "My music",
-        active: pathname === "/my-music",
-        path: "/my-music",
+        active: pathname === artistRoutePath.myMusic,
+        path: artistRoutePath.myMusic,
       },
       {
-        icon: BiSearch,
+        icon: MdOutlinePeopleAlt,
         label: "Audience",
-        active: pathname === "/audience",
-        path: "/audience",
+        active: pathname === artistRoutePath.audience,
+        path: artistRoutePath.audience,
       },
       {
-        icon: BiSearch,
+        icon: IoIosStats,
         label: "Stats",
-        active: pathname === "/stats",
-        path: "/stats",
+        active: pathname === artistRoutePath.stats,
+        path: artistRoutePath.stats,
       },
     ],
     [pathname],

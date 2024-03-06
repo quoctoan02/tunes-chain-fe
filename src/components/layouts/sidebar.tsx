@@ -34,7 +34,8 @@ const Sidebar: React.FC<SidebarProps> = () => {
       flex-col 
       gap-y-2 
       bg-black 
-      p-2 
+      px-2
+      pt-2 
       md:flex"
     >
       <Box>
@@ -44,7 +45,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
           })}
         </div>
       </Box>
-      <Box>
+      <Box className="h-full">
         <div className="flex flex-col gap-y-4 px-5 py-4">
           <Library />
         </div>

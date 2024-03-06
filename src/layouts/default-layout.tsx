@@ -8,11 +8,11 @@ interface DefaultLayoutProps {}
 
 const DefaultLayout: FC<DefaultLayoutProps> = () => {
   return (
-    <div className="flex h-full flex-col">
-      <div className="flex h-full">
+    <div className="flex h-screen">
+      <div className="flex h-[calc(100%-92px)] w-full">
         {/* <Header /> */}
         <SideBar />
-        <main className="h-full flex-1 overflow-y-auto py-2">
+        <main className="h-full flex-1 overflow-y-auto pr-2 pt-2">
           <Outlet />
         </main>
       </div>
