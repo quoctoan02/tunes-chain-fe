@@ -13,8 +13,7 @@
     "format": "prettier --write .",
     "preview": "vite preview",
     "tsc": "tsc --pretty --noEmit",
-    "test": "vitest",
-    "postinstall": "husky install"
+    "test": "vitest"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",

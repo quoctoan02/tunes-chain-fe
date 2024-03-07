@@ -1,4 +1,4 @@
-import SideBar from "@/components/layouts/artist/side-bar"
+import SideBar from "@/components/layouts/artist/sidebar"
 import { FC } from "react"
 import { Outlet } from "react-router-dom"
 

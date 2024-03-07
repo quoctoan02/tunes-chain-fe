@@ -18,9 +18,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
         flex 
         w-full 
         rounded-full
-        bg-neutral-700
         border
         border-transparent
+        bg-neutral-800
         px-3 
         py-3 
         text-sm 
@@ -30,12 +30,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
         file:text-sm 
         file:font-medium 
         placeholder:text-neutral-400 
-        disabled:cursor-not-allowed 
+        focus:outline-none 
+        disabled:cursor-not-allowed
         disabled:opacity-50
-        focus:outline-none
       `,
-        disabled && 'opacity-75',
-        className
+        disabled && "opacity-75",
+        className,
       )}
       disabled={disabled}
       ref={ref}

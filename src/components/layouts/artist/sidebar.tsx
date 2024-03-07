@@ -33,9 +33,9 @@ const Sidebar: React.FC<SidebarProps> = () => {
       },
       {
         icon: IoIosStats,
-        label: "Stats",
-        active: pathname === artistRoutePath.stats,
-        path: artistRoutePath.stats,
+        label: "Analytics",
+        active: pathname === artistRoutePath.analytics,
+        path: artistRoutePath.analytics,
       },
     ],
     [pathname],

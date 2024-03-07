@@ -27,17 +27,18 @@ const HomePage: React.FC<HomePageProps> = ({ className }) => {
     },
   ]
   return (
-    <div
-      className="
-        h-full 
-        w-full 
-        overflow-hidden 
-        overflow-y-auto 
-        rounded-lg 
-        bg-neutral-900
-      "
-    >
-      <Center>
+    // <div
+    //   className="
+    //     h-full 
+    //     w-full 
+    //     overflow-hidden 
+    //     overflow-y-auto 
+    //     rounded-lg 
+    //     bg-neutral-900
+    //   "
+    // >
+    //   <Center>
+    <>
         <div className="mb-2">
           <h1
             className="
@@ -68,8 +69,9 @@ const HomePage: React.FC<HomePageProps> = ({ className }) => {
           </div>
           <ListSong songs={songs} />
         </div>
-      </Center>
-    </div>
+</>
+    //   </Center>
+    // </div>
   )
 }
 

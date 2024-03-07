@@ -30,7 +30,7 @@ const routes: RouteObject[] = [
       { path: artistRoutePath.home, element: <AdminHomePage /> },
       { path: artistRoutePath.myMusic, element: <TranslationPage /> },
       { path: artistRoutePath.profile, element: <SearchPage /> },
-      { path: artistRoutePath.stats, element: <LikedSongsPage /> },
+      { path: artistRoutePath.analytics, element: <LikedSongsPage /> },
     ],
   },
 

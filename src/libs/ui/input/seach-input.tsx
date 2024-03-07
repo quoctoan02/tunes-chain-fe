@@ -13,16 +13,19 @@ const SearchInput = () => {
   const debouncedValue = useDebounce<string>(value, 500);
 
   useEffect(() => {
-    const query = {
-      title: debouncedValue,
-    };
+    if (value) {
+      const query = {
+        title: debouncedValue,
+      }
 
-    const url = qs.stringifyUrl({
-      url: '/search',
-      query
-    });
+      const url = qs.stringifyUrl({
+        url: "/search",
+        query,
+      })
 
-    navigate(url);
+      navigate(url)
+    }
+    
   }, [debouncedValue, navigate]);
 
   return ( 

@@ -15,7 +15,7 @@ export const artistRoutePath = {
   home: "/artist/home",
   profile: "/artist/profile",
   myMusic: "/artist/my-music",
-  stats: "/artist/stats",
+  analytics: "/artist/analytics",
   audience: "/artist/audience",
 } as const
 

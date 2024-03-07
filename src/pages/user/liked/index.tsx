@@ -6,17 +6,7 @@ const LikedSongsPage = () => {
   // const songs = await getLikedSongs();
 
   return (
-    <div
-      className="
-        h-full 
-        w-full 
-        overflow-hidden 
-        overflow-y-auto 
-        rounded-lg 
-        bg-neutral-900
-      "
-    >
-      <Header />
+    <>
       <div className="mt-20">
         <div
           className="
@@ -51,7 +41,7 @@ const LikedSongsPage = () => {
         </div>
       </div>
       {/* <LikedContent songs={songs} /> */}
-    </div>
+    </>
   )
 }
 

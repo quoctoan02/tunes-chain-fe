@@ -5,6 +5,8 @@ import { RxCaretLeft, RxCaretRight } from "react-icons/rx"
 import Button from "../../libs/ui/buttons/button"
 import { useNavigate } from "react-router-dom"
 import useAuthModal from "@/hooks/auth/use-auth-modal"
+import SearchInput from "@/libs/ui/input/seach-input"
+import useSearchInputStore from "@/hooks/stores/use-search-input"
 
 interface HeaderProps {
   children?: React.ReactNode
@@ -15,6 +17,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
   // const player = usePlayer();
   const navigate = useNavigate()
   const authModal = useAuthModal()
+  const { isShow: isShowSearchInput } = useSearchInputStore()
 
   // const supabaseClient = useSupabaseClient();
   // const { user } = useUser();
@@ -29,7 +32,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
   //   }
   // }
   return (
-    <div className="flex w-full items-center justify-between gap-x-4 px-3 pb-3">
+    <div className="flex min-h-[58px] w-full items-center justify-between gap-x-4 px-3 pb-3">
       <div className="flex gap-x-4">
         <div className="hidden items-center gap-x-3 md:flex">
           <button
@@ -97,6 +100,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
             <BiSearch className="text-black" size={20} />
           </button>
         </div>
+        {isShowSearchInput && <SearchInput />}
         {children}
       </div>
 
