@@ -1,14 +1,13 @@
 "use client"
 
+import { IMediaItem } from "@/types/media.type"
 import { FaPlay } from "react-icons/fa"
 
-interface ListItemProps {
-  image: string
-  name: string
-  href: string
+interface RecommendMediaItemProps {
+  data: Partial<IMediaItem>
 }
 
-const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
+const RecommendMediaItem: React.FC<RecommendMediaItemProps> = ({ data }) => {
   // const onClick = () => {
   //   if (!user) {
   //     return authModal.onOpen();
@@ -36,9 +35,9 @@ const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
       "
     >
       <div className="relative min-h-[64px] min-w-[64px]">
-        <img className="absolute inset-0 h-full w-full object-cover" src={image} alt="Image" />
+        <img className="absolute inset-0 h-full w-full object-cover" src={data.image} alt="Image" />
       </div>
-      <p className="truncate py-5 font-medium">{name}</p>
+      <p className="md:text-md py-5 font-bold lg:text-lg">{data.title}</p>
       <div
         className="
           absolute 
@@ -62,4 +61,4 @@ const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
   )
 }
 
-export default ListItem
+export default RecommendMediaItem

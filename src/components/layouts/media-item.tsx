@@ -1,15 +1,16 @@
 "use client"
 
 import PlayButton from "@/libs/ui/buttons/play-button"
+import { IMediaItem } from "@/types/media.type"
 import { Song } from "@/types/song.type"
 // import PlayButton from "./PlayButton";
 
-interface SongItemProps {
-  data: Partial<Song>
+interface MediaItemProps {
+  data: Partial<IMediaItem>
   onClick?: (id: string) => void
 }
 
-const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
+const MediaItem: React.FC<MediaItemProps> = ({ data, onClick }) => {
   // const imagePath = useLoadImage(data);
   const imagePath = ""
   return (
@@ -59,7 +60,7 @@ const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
             text-neutral-400
           "
         >
-          By {data.artist}
+          {data.artist}
         </p>
       </div>
       <div
@@ -75,4 +76,4 @@ const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
   )
 }
 
-export default SongItem
+export default MediaItem

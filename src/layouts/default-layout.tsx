@@ -1,20 +1,24 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { Outlet } from "react-router-dom"
 
 import Player from "@/components/layouts/player"
 import SideBar from "@/components/layouts/sidebar"
 import Center from "@/components/layouts/center"
 import Header from "@/components/layouts/header"
+import { twMerge } from "tailwind-merge"
+import useBgColorStore from "@/hooks/stores/use-bg-color-store"
 
 interface DefaultLayoutProps {}
 
 const DefaultLayout: FC<DefaultLayoutProps> = () => {
+  const { color } = useBgColorStore()
+  console.log("🚀 ~ color:", color)
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen bg-black">
       <div className="flex h-[calc(100%-92px)] w-full">
         {/* <Header /> */}
         <SideBar />
-        <main className="mr-2 mt-2 h-full flex-1 overflow-hidden overflow-y-auto rounded-lg bg-gradient-to-b from-emerald-800 p-3">
+        <main className={twMerge("h-full flex-1 py-2 pr-2", color)}>
           {/* <div
             className="
         h-full 
@@ -25,7 +29,6 @@ const DefaultLayout: FC<DefaultLayoutProps> = () => {
         bg-neutral-900
       "
           > */}
-          <Header />
           <Center>
             <Outlet />
           </Center>

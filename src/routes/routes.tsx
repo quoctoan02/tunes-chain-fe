@@ -9,6 +9,7 @@ export const routePath = {
   likedSongs: "liked/songs",
   artist: "artist/:id",
   album: "album/:id",
+  playlist: "playlist/:id",
 } as const
 
 export const artistRoutePath = {

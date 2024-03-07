@@ -17,10 +17,14 @@ const Center: React.FC<CenterProps> = ({ children, className }) => {
     <div
       className={twMerge(
         `
-        h-fit 
-        bg-gradient-to-b 
-        from-emerald-800 
-        p-3
+        h-full
+        w-full
+        overflow-hidden 
+        overflow-y-auto
+        rounded-lg 
+        bg-neutral-900 
+        px-6
+        py-3
         `,
         className,
       )}

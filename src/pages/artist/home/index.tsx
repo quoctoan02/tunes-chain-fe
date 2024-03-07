@@ -1,6 +1,6 @@
 import Header from "@/components/layouts/header"
 import { twMerge } from "tailwind-merge"
-import ListSong from "./list-song"
+import ListSong from "../../../components/layouts/list-song"
 import { Song } from "@/types/song.type"
 import Center from "@/components/layouts/center"
 
@@ -29,18 +29,18 @@ const AdminHomePage: React.FC<AdminHomePageProps> = ({ className }) => {
   ]
   return (
     <>
-        <div className="mb-2">
-          <h1
-            className="
+      <div className="mb-2">
+        <h1
+          className="
             text-3xl 
               font-semibold 
               text-white
             "
-          >
-            Welcome back
-          </h1>
-          <div
-            className="
+        >
+          Welcome back
+        </h1>
+        <div
+          className="
               mt-4 
               grid 
               grid-cols-1 
@@ -49,17 +49,17 @@ const AdminHomePage: React.FC<AdminHomePageProps> = ({ className }) => {
               xl:grid-cols-3 
               2xl:grid-cols-4
             "
-          >
-            {/* <ListItem name="Liked Songs" image="/images/liked.png" href="liked" /> */}
-          </div>
+        >
+          {/* <ListItem name="Liked Songs" image="/images/liked.png" href="liked" /> */}
         </div>
-        <div className="mb-7 mt-2 px-6">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-semibold text-white">Newest songs</h1>
-          </div>
-          <ListSong songs={songs} />
+      </div>
+      <div className="mb-7 mt-2 px-6">
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-semibold text-white">Newest songs</h1>
         </div>
-        </>
+        <ListSong songs={songs} />
+      </div>
+    </>
   )
 }
 

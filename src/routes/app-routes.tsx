@@ -10,6 +10,7 @@ import SearchPage from "@/pages/user/search"
 import LikedSongsPage from "@/pages/user/liked"
 import ArtistLayout from "@/layouts/artist-layout"
 import AdminHomePage from "@/pages/artist/home"
+import MyMusicPage from "@/pages/artist/my-music"
 
 interface AppRoutesProps {}
 
@@ -22,13 +23,16 @@ const routes: RouteObject[] = [
       { path: routePath.translation, element: <TranslationPage /> },
       { path: routePath.search, element: <SearchPage /> },
       { path: routePath.likedSongs, element: <LikedSongsPage /> },
+      { path: routePath.playlist, element: <LikedSongsPage /> },
+      { path: routePath.album, element: <LikedSongsPage /> },
+      { path: routePath.artist, element: <LikedSongsPage /> },
     ],
   },
   {
     element: <ArtistLayout />,
     children: [
       { path: artistRoutePath.home, element: <AdminHomePage /> },
-      { path: artistRoutePath.myMusic, element: <TranslationPage /> },
+      { path: artistRoutePath.myMusic, element: <MyMusicPage /> },
       { path: artistRoutePath.profile, element: <SearchPage /> },
       { path: artistRoutePath.analytics, element: <LikedSongsPage /> },
     ],

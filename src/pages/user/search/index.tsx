@@ -1,6 +1,4 @@
-
-
-import Header from "@/components/layouts/header";
+import Header from "@/components/layouts/header"
 import { useShowSearchInput } from "@/hooks/render/use-show-search-input"
 import useSearchInputStore from "@/hooks/stores/use-search-input"
 import SearchInput from "@/libs/ui/input/seach-input"
@@ -29,12 +27,6 @@ const SearchPage: FC<SearchProps> = () => {
   return (
     <div
       className="
-        h-full 
-        w-full 
-        overflow-hidden 
-        overflow-y-auto 
-        rounded-lg 
-        bg-neutral-900
       "
     >
       {/* <SearchContent songs={songs} /> */}
@@ -42,4 +34,4 @@ const SearchPage: FC<SearchProps> = () => {
   )
 }
 
-export default SearchPage;
+export default SearchPage

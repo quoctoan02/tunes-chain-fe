@@ -1,10 +1,10 @@
-import Header from "@/components/layouts/header"
+import { useChangeBgColor } from "@/hooks/render/use-change-bg-color"
 
 export const revalidate = 0
 
 const LikedSongsPage = () => {
   // const songs = await getLikedSongs();
-
+  useChangeBgColor()
   return (
     <>
       <div className="mt-20">
