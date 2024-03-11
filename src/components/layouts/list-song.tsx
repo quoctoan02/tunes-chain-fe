@@ -15,8 +15,8 @@ const ListSong: React.FC<ListSongProps> = ({ songs }) => {
   }
 
   return (
-    <div className="mt-4 flex">
-      <table className="table-fixed">
+    <div className="flex flex-col space-y-1 pb-28">
+      {/* <table className="table-fixed">
         <thead>
           <tr className="text-left hover:border-collapse">
             <th>Song</th>
@@ -51,7 +51,7 @@ const ListSong: React.FC<ListSongProps> = ({ songs }) => {
         <div role="presentation">
           <div role="row">hihi</div>
         </div>
-      </div>
+      </div> */}
       {songs.map((item) => (
         <SongItem
           //     onClick={(id: string) => onPlay(id)}

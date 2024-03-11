@@ -16,10 +16,19 @@ const SongItem: React.FC<SongItemProps> = ({ data: { id = 0, album_id, image, ti
   return (
     <div
       // onClick={() => onClick(data.id)}
-      className="grid cursor-pointer grid-cols-2 rounded-lg px-5 py-2 text-neutral-500 hover:bg-neutral-400/10"
+      className="group relative  flex w-full cursor-pointer items-center justify-between space-x-2 overflow-hidden rounded-lg px-5 py-2 text-neutral-500 transition hover:bg-neutral-400/10 lg:space-x-4"
     >
-      <div className="flex items-center space-x-4">
+      <div className="lg:w-100 flex min-w-fit items-center gap-x-4 lg:gap-x-8">
         <p>{id + 1}</p>
+        <div
+          className="
+          absolute 
+          bottom-24 
+          left-5
+        "
+        >
+          <PlayButton />
+        </div>
         <div
           className="
           relative
@@ -36,16 +45,18 @@ const SongItem: React.FC<SongItemProps> = ({ data: { id = 0, album_id, image, ti
             alt="Image"
           />
         </div>
-        <div>
-          <p className="w-36 truncate text-white lg:w-72"> {title}</p>
-          <p className="w-36 truncate text-white lg:w-72"> {title}</p>
+        <div className="min-w-48 flex h-full flex-col justify-center lg:w-72">
+          <p className="text-base  text-white"> {title}</p>
+          <p className="text-sm  text-neutral-500"> {title}</p>
         </div>
-        <p className="w-40"> {title}</p>
       </div>
-      <div className="ml-auto flex items-center justify-between md:ml-0">
+      <p className="w-40 truncate"> {title}</p>
+      <p className="w-12 truncate">{convertDuration(100 as number)}</p>
+
+      {/* <div className="ml-auto flex items-center justify-between md:ml-0">
         <p className="hidden w-40 md:block">{title}</p>
-        <p>{convertDuration(100 as number)}</p>
-      </div>
+        <p className="w-12">{convertDuration(100 as number)}</p>
+      </div> */}
     </div>
   )
 }
