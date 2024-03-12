@@ -46,10 +46,7 @@ export class UploadService {
       let data = new FormData()
       data.append("video", image)
 
-      const res = await http.post<{
-        userInfo: UserInfo
-        token: string
-      }>("/upload/image", data)
+      const res = await http.post("/upload/image", data)
       if (res?.data) {
         return res.data
       }

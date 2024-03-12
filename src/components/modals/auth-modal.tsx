@@ -27,7 +27,7 @@ const AuthModal = () => {
       <div>
         <DragDropImage
           title={"upload image"}
-          image={banner_images?.images.bannerImage}
+          // image={banner_images?.images.bannerImage}
           // callBackImageUpload={(image) => handleUploadImageAction(image, "bannerImage", "images")}
         />
       </div>

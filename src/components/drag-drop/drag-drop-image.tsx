@@ -1,4 +1,3 @@
-import { iconUpload } from "@/assets"
 import { Service } from "@/services/app.service"
 import { cn } from "@/utils/classnames"
 import { FC, useEffect, useRef, useState } from "react"
@@ -26,7 +25,7 @@ export const DragDropImage: FC<DragDropImageProps> = ({
   const [dragActive, setDragActive] = useState(false)
   const [previewData, setPreviewData] = useState("")
 
-  const uploadRef = useRef(null)
+  const uploadRef: any = useRef(null)
 
   useEffect(() => {
     setPreviewData(image)
@@ -58,7 +57,7 @@ export const DragDropImage: FC<DragDropImageProps> = ({
     }
 
     if (files && uploadRef.current) {
-      uploadRef?.current?.files = files
+      uploadRef.current.files = files
       preview(files[0])
     }
   }
@@ -72,7 +71,7 @@ export const DragDropImage: FC<DragDropImageProps> = ({
       return new Promise((resolve, reject) => {
         const img = new Image()
         img.onload = function () {
-          const { width, height } = this
+          const { width, height } = img
 
           if (width > maxWidth || height > maxHeight) {
             toast.error("Invalid image dimensions")
@@ -165,9 +164,10 @@ export const DragDropImage: FC<DragDropImageProps> = ({
   }
 
   const renderContent = () => {
-    if (loading) {
-      return <Loading />
-    } else if (previewData) {
+    // if (loading) {
+    //   return <Loading />
+    // } else
+    if (previewData) {
       return (
         <div className={cn("h-full w-full")}>
           <img src={previewData} className="h-full w-full object-contain" />
@@ -177,13 +177,13 @@ export const DragDropImage: FC<DragDropImageProps> = ({
 
     return (
       <div className={cn("flex h-full w-full flex-col items-center justify-center py-10")}>
-        <img src={iconUpload} alt="Image" />
+        <img src={"/icons/icon-upload"} alt="Image" />
 
-        <p className="mt-2 text-center text-sm font-medium text-stone-950">
-          {t("Common.dragAndDrop")} <span className="cursor-pointer text-blue-500">{t("Common.browse")}</span>
+        <p className="mt-2 text-center text-sm font-medium text-neutral-500">
+          Drag & drop files or <span className="cursor-pointer text-blue-500">Browse</span>
         </p>
 
-        <p className="mt-1 text-center text-sm text-stone-500">{t("Common.supportedFormates")}</p>
+        <p className="mt-1 text-center text-sm text-neutral-500">Supported formates: JPEG, PNG, JPG</p>
       </div>
     )
   }
@@ -196,7 +196,7 @@ export const DragDropImage: FC<DragDropImageProps> = ({
 
           {previewData && (
             <p className="text-sx cursor-pointer text-blue-500" onClick={handleRemoveImage}>
-              {t("removeImage")}
+              Remove image
             </p>
           )}
         </div>
@@ -209,7 +209,7 @@ export const DragDropImage: FC<DragDropImageProps> = ({
             withBox ? withBox : "w-[19.75rem]",
           )}
           onClick={function () {
-            uploadRef.current?.click()
+            uploadRef.current.click()
           }}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
