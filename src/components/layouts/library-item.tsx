@@ -14,7 +14,7 @@ const LibraryItem: React.FC<LibraryItemProps> = ({ data, onClick }) => {
   }
   return (
     <div
-      className="flex w-full cursor-pointer items-center gap-x-3 rounded-sm py-2 hover:bg-neutral-800/50"
+      className="flex w-full cursor-pointer items-center gap-x-4 rounded-sm py-2 hover:bg-neutral-800/50"
       onClick={handleChooseItem}
     >
       <div className="relative min-h-[52px] min-w-[52px] overflow-hidden rounded-md">
@@ -23,7 +23,8 @@ const LibraryItem: React.FC<LibraryItemProps> = ({ data, onClick }) => {
       <div className="flex flex-col gap-y-1 overflow-hidden">
         <p className="truncate text-white">{data.title}</p>
         <p className="truncate text-sm text-neutral-400">
-          {data?.type} • {data?.creator || data.artist}
+          {data?.type && data?.type + " • "}
+          {data?.creator || data.artist}
         </p>
       </div>
     </div>

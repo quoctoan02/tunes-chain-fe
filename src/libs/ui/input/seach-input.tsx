@@ -1,16 +1,16 @@
-"use client";
+"use client"
 
-import qs from "query-string";
-import { useEffect, useState } from "react";
+import qs from "query-string"
+import { useEffect, useState } from "react"
 
-import Input from "./input";
-import { useDebounce } from "@/hooks/render/use-debounce";
-import { useNavigate } from "react-router-dom";
+import Input from "./input"
+import { useDebounce } from "@/hooks/render/use-debounce"
+import { useNavigate } from "react-router-dom"
 
 const SearchInput = () => {
-  const navigate = useNavigate();
-  const [value, setValue] = useState<string>('');
-  const debouncedValue = useDebounce<string>(value, 500);
+  const navigate = useNavigate()
+  const [value, setValue] = useState<string>("")
+  const debouncedValue = useDebounce<string>(value, 500)
 
   useEffect(() => {
     if (value) {
@@ -25,17 +25,16 @@ const SearchInput = () => {
 
       navigate(url)
     }
-    
-  }, [debouncedValue, navigate]);
+  }, [debouncedValue, navigate])
 
-  return ( 
-    <Input 
-    className="max-w-[500px] w-full min-w-[400px]"
+  return (
+    <Input
+      className="w-full min-w-[400px] max-w-[500px]"
       placeholder="What do you want to listen to?"
       value={value}
       onChange={(e) => setValue(e.target.value)}
     />
-  );
+  )
 }
- 
-export default SearchInput;
+
+export default SearchInput

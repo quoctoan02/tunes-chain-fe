@@ -1,6 +1,6 @@
 import React from "react"
 import { IconType } from "react-icons"
-import { NavLink} from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { twMerge } from "tailwind-merge"
 
 interface SidebarItemProps {

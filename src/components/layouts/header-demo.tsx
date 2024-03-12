@@ -39,11 +39,7 @@ const HeaderDemo: FC<HeaderProps> = () => {
                   return (
                     <NavLink key={route.to} to={route.to}>
                       {({ isActive }) => {
-                        return (
-                          <div className={cn("", isActive && "text-primary-500 underline")}>
-                            {route.label}
-                          </div>
-                        )
+                        return <div className={cn("", isActive && "text-primary-500 underline")}>{route.label}</div>
                       }}
                     </NavLink>
                   )
@@ -82,22 +78,13 @@ const HeaderDemo: FC<HeaderProps> = () => {
         </Container>
       </header>
 
-      <Drawer
-        open={isOpenDrawer}
-        width={375}
-        styles={{ header: { display: "none" } }}
-        onClose={handleCloseDrawer}
-      >
+      <Drawer open={isOpenDrawer} width={375} styles={{ header: { display: "none" } }} onClose={handleCloseDrawer}>
         <div className="flex flex-col gap-8">
           {routes.map((route, index) => {
             return (
               <NavLink key={`drawer-${route.to}`} to={route.to} onClick={handleCloseDrawer}>
                 {({ isActive }) => {
-                  return (
-                    <div className={cn("", isActive && "text-primary-500 underline")}>
-                      {route.label}
-                    </div>
-                  )
+                  return <div className={cn("", isActive && "text-primary-500 underline")}>{route.label}</div>
                 }}
               </NavLink>
             )
