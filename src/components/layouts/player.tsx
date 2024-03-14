@@ -10,6 +10,7 @@ import VolumeSlider from "@/components/layouts/slider"
 import MediaItem from "./library-item"
 import Slider from "@/components/layouts/slider"
 import { SliderType } from "@/types/song.type"
+import usePlayerStore from "@/hooks/stores/use-song-store"
 
 const Player = () => {
   // const { song } = useGetSongById(player.activeId);
@@ -21,9 +22,10 @@ const Player = () => {
   // }
 
   // const player = usePlayer();
-  const [volume, setVolume] = useState(1)
-  console.log("🚀 ~ Player ~ volume:", volume)
-  const [isPlaying, setIsPlaying] = useState(false)
+  const { volume, changeVolume, changeProgressTime, progressTime, isPlaying, toggleIsPlaying } = usePlayerStore()
+  console.log("🚀 ~ Player ~ isPlaying:", isPlaying)
+  console.log("🚀 ~ Player ~ volume:", volume, progressTime)
+  // const [isPlaying, setIsPlaying] = useState(false)
 
   const Icon = isPlaying ? BsPauseFill : BsPlayFill
   const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave
@@ -80,21 +82,13 @@ const Player = () => {
   //   }
   // }, [sound]);
 
-  // const handlePlay = () => {
-  //   if (!isPlaying) {
-  //     play();
-  //   } else {
-  //     pause();
-  //   }
-  // }
-
-  // const toggleMute = () => {
-  //   if (volume === 0) {
-  //     setVolume(1);
-  //   } else {
-  //     setVolume(0);
-  //   }
-  // }
+  const toggleMute = () => {
+    if (volume === 0) {
+      changeVolume(1)
+    } else {
+      changeVolume(0)
+    }
+  }
   const song = {
     id: 1,
     artist: "Phan manh quynh",
@@ -168,7 +162,7 @@ const Player = () => {
             "
             />
             <div
-              //   onClick={handlePlay}
+              onClick={toggleIsPlaying}
               className="
               flex 
               h-10 
@@ -196,19 +190,20 @@ const Player = () => {
           </div>
           <div className="flex items-center justify-between gap-2">
             <span>0:00</span>
-            <Slider value={volume} type={SliderType.Player} maxValue={300} onChange={(value) => setVolume(value)} />
+            <Slider
+              value={progressTime}
+              type={SliderType.Player}
+              maxValue={300}
+              onChange={(value) => changeProgressTime(value)}
+            />
             <span>5:00</span>
           </div>
         </div>
 
         <div className="hidden w-full justify-end pr-2 md:flex">
           <div className="flex w-[120px] items-center gap-x-2">
-            <VolumeIcon
-              //  onClick={toggleMute}
-              className="cursor-pointer"
-              size={34}
-            />
-            <Slider value={volume} type={SliderType.Volume} onChange={(value) => setVolume(value)} />
+            <VolumeIcon onClick={toggleMute} className="cursor-pointer" size={34} />
+            <Slider value={volume} type={SliderType.Volume} onChange={(value) => changeVolume(value)} />
           </div>
         </div>
       </div>

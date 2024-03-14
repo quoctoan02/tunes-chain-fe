@@ -1,7 +1,29 @@
+import ListSong from "@/components/layouts/list-song"
 import { useChangeBgColor } from "@/hooks/render/use-change-bg-color"
+import { IMediaItem } from "@/types/media.type"
 
 export const revalidate = 0
 
+const songs: Partial<IMediaItem>[] = [
+  {
+    id: 1,
+    artist: "Phan manh quynh",
+    title: "Sau loi tu khuoc",
+    image: "/images/default/liked.png",
+  },
+  {
+    id: 2,
+    artist: "Phan manh quynh",
+    title: "Sau loi tu khuoc",
+    image: "/images/default/liked.png",
+  },
+  {
+    id: 3,
+    artist: "Phan manh quynh",
+    title: "Sau loi tu khuoc",
+    image: "/images/default/liked.png",
+  },
+]
 const LikedSongsPage = () => {
   // const songs = await getLikedSongs();
   useChangeBgColor()
@@ -39,6 +61,7 @@ const LikedSongsPage = () => {
             </h1>
           </div>
         </div>
+        <ListSong songs={songs} />
       </div>
       {/* <LikedContent songs={songs} /> */}
     </>

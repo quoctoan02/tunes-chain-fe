@@ -6,7 +6,7 @@ import Button from "../../libs/ui/buttons/button"
 import { useNavigate } from "react-router-dom"
 import useAuthModal from "@/hooks/auth/use-auth-modal"
 import SearchInput from "@/libs/ui/input/seach-input"
-import useSearchInputStore from "@/hooks/stores/use-search-input"
+import useSearchInputStore from "@/hooks/stores/use-search-input-store"
 
 interface HeaderProps {
   children?: React.ReactNode

@@ -7,7 +7,7 @@ export const routePath = {
   notFound: "*",
   search: "/search",
   likedSongs: "liked/songs",
-  artist: "artist/:id",
+  artistInfo: "artist-info/:id",
   album: "album/:id",
   playlist: "playlist/:id",
 } as const

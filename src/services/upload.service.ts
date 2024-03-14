@@ -44,9 +44,10 @@ export class UploadService {
   async uploadImage(image: string) {
     try {
       let data = new FormData()
-      data.append("video", image)
+      data.append("image", image)
 
       const res = await http.post("/upload/image", data)
+      console.log("🚀 ~ UploadService ~ uploadImage ~ res:", res)
       if (res?.data) {
         return res.data
       }

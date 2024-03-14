@@ -1,5 +1,6 @@
 "use client"
 
+import LikeButton from "@/libs/ui/buttons/like-button"
 import PlayButton from "@/libs/ui/buttons/play-button"
 import { Song } from "@/types/song.type"
 import { convertDuration } from "@/utils/convert-duration"
@@ -51,6 +52,7 @@ const SongItem: React.FC<SongItemProps> = ({ data: { id = 0, album_id, image, ti
         </div>
       </div>
       <p className="w-40 truncate"> {title}</p>
+      <LikeButton songId={id} />
       <p className="w-12 truncate">{convertDuration(100 as number)}</p>
 
       {/* <div className="ml-auto flex items-center justify-between md:ml-0">

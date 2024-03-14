@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import useSearchInputStore from "../stores/use-search-input"
+import useSearchInputStore from "../stores/use-search-input-store"
 
 export const useShowSearchInput = () => {
   const { onShow, onHide, isShow } = useSearchInputStore()

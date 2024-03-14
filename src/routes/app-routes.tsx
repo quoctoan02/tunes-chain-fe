@@ -25,7 +25,7 @@ const routes: RouteObject[] = [
       { path: routePath.likedSongs, element: <LikedSongsPage /> },
       { path: routePath.playlist, element: <LikedSongsPage /> },
       { path: routePath.album, element: <LikedSongsPage /> },
-      { path: routePath.artist, element: <LikedSongsPage /> },
+      { path: routePath.artistInfo, element: <LikedSongsPage /> },
     ],
   },
   {
@@ -34,6 +34,7 @@ const routes: RouteObject[] = [
       { path: artistRoutePath.home, element: <AdminHomePage /> },
       { path: artistRoutePath.myMusic, element: <MyMusicPage /> },
       { path: artistRoutePath.profile, element: <SearchPage /> },
+      { path: artistRoutePath.audience, element: <SearchPage /> },
       { path: artistRoutePath.analytics, element: <LikedSongsPage /> },
     ],
   },

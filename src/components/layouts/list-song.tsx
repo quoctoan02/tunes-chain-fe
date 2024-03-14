@@ -2,6 +2,7 @@
 
 import { Song } from "@/types/song.type"
 import SongItem from "./song-item"
+import { HiOutlineClock } from "react-icons/hi2"
 
 interface ListSongProps {
   songs: Partial<Song>[]
@@ -52,6 +53,31 @@ const ListSong: React.FC<ListSongProps> = ({ songs }) => {
           <div role="row">hihi</div>
         </div>
       </div> */}
+      <div
+        // onClick={() => onClick(data.id)}
+        className="group relative  flex w-full cursor-pointer items-center justify-between space-x-2 overflow-hidden rounded-lg px-5 py-2 text-neutral-500 transition hover:bg-neutral-400/10 lg:space-x-4"
+      >
+        <div className="lg:w-100 flex min-w-fit items-center gap-x-4 lg:gap-x-8">
+          <p>#</p>
+          {/* <div
+            className="
+          absolute 
+          bottom-24 
+          left-5
+        "
+          >
+            <PlayButton />
+          </div> */}
+        </div>
+        <p>Title</p>
+        <p className="w-40 truncate">Album</p>
+        <HiOutlineClock />
+
+        {/* <div className="ml-auto flex items-center justify-between md:ml-0">
+        <p className="hidden w-40 md:block">{title}</p>
+        <p className="w-12">{convertDuration(100 as number)}</p>
+      </div> */}
+      </div>
       {songs.map((item) => (
         <SongItem
           //     onClick={(id: string) => onPlay(id)}

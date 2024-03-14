@@ -5,13 +5,14 @@ import { TbPlaylist } from "react-icons/tb"
 import { twMerge } from "tailwind-merge"
 import MediaItem from "./library-item"
 import LibraryItem from "./library-item"
+import { useNavigate } from "react-router-dom"
 interface LibraryProps {
   // items: MediaItem[]
 }
 const Library = () => {
   const [isActiveType, setIsActiveType] = useState<MediaType>(MediaType.Playlist)
   const types: MediaType[] = useMemo(() => [MediaType.Playlist, MediaType.Artist, MediaType.Albums], [])
-
+  const navigate = useNavigate()
   const handleChooseFilter = (type: MediaType) => {
     setIsActiveType(type)
   }
