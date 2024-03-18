@@ -1,22 +1,24 @@
 import { Loading } from "@/libs/ui/loading"
 import { Service } from "@/services/app.service"
+import { MediaFileType } from "@/types/media.type"
 import { cn } from "@/utils/classnames"
 import { FC, useEffect, useRef, useState } from "react"
+import { HiMusicNote } from "react-icons/hi"
 import { toast } from "react-toastify"
 
-interface DragDropImageProps {
+interface DragDropAudioProps {
   title?: string
-  image?: any
-  callBackImageUpload?: any
+  file?: any
+  callBackMediaUpload?: any
   className?: string
   sizeWidth?: number
   sizeHeight?: number
   withBox?: boolean
 }
-export const DragDropImage: FC<DragDropImageProps> = ({
+export const DragDropMedia: FC<DragDropAudioProps> = ({
   title = "",
-  image,
-  callBackImageUpload,
+  file,
+  callBackMediaUpload,
   className,
   sizeWidth,
   sizeHeight,
@@ -24,13 +26,13 @@ export const DragDropImage: FC<DragDropImageProps> = ({
 }) => {
   const [loading, setLoading] = useState(false)
   const [dragActive, setDragActive] = useState(false)
-  const [previewData, setPreviewData] = useState("")
+  const [previewData, setPreviewData] = useState(null)
 
   const uploadRef: any = useRef(null)
 
-  useEffect(() => {
-    setPreviewData(image)
-  }, [image])
+  // useEffect(() => {
+  //   setPreviewData(file.name)
+  // }, [file.name])
 
   const handleDrag = function (e: any) {
     e.preventDefault()
@@ -47,11 +49,6 @@ export const DragDropImage: FC<DragDropImageProps> = ({
     e.stopPropagation()
     setDragActive(false)
     const files = e.dataTransfer.files
-    const validateSize = await validateDimensionSize(files[0])
-
-    if (!validateSize) {
-      return
-    }
 
     if (!validateFileType(files[0]) || !validateFileSize(files[0])) {
       return
@@ -63,40 +60,11 @@ export const DragDropImage: FC<DragDropImageProps> = ({
     }
   }
 
-  const validateDimensionSize = async (file: any) => {
-    if (sizeHeight && sizeWidth) {
-      const maxWidth = sizeWidth
-      const maxHeight = sizeHeight
-
-      // eslint-disable-next-line no-undef
-      return new Promise((resolve, reject) => {
-        const img = new Image()
-        img.onload = function () {
-          const { width, height } = img
-
-          if (width > maxWidth || height > maxHeight) {
-            toast.error("Invalid image dimensions")
-            reject(false)
-          } else {
-            resolve(true)
-          }
-        }
-        img.onerror = function () {
-          toast.error("Failed to load image")
-          reject(false)
-        }
-        img.src = URL.createObjectURL(file)
-      })
-    }
-
-    return true
-  }
-
   const validateFileSize = (file: any) => {
-    const maxSize = 5 * 1024 * 1024 // 5MB
+    const maxSize = 15 * 1024 * 1024 // 5MB
 
     if (file.size > maxSize) {
-      toast.error("Image size exceeds the limit")
+      toast.error("Audio file size exceeds the limit")
       return false
     }
 
@@ -104,25 +72,20 @@ export const DragDropImage: FC<DragDropImageProps> = ({
   }
 
   const validateFileType = (file: any) => {
-    const allowedExtensions = ["jpeg", "png", "jpg"]
+    const allowedExtensions = ["mp3", "ogg", "wav"]
     const fileExtension = file.name.split(".").pop().toLowerCase()
 
     if (!allowedExtensions.includes(fileExtension)) {
-      toast.error("Invalid file type")
+      toast.error("Invalid audio file type")
       return false
     }
 
     return true
   }
 
-  async function selectImage(e: any) {
+  async function selectFile(e: any) {
     const files = e.target.files
     if (!files?.length) return
-
-    const validateSize = await validateDimensionSize(files[0])
-    if (!validateSize) {
-      return
-    }
 
     if (!validateFileType(files[0]) || !validateFileSize(files[0])) {
       return
@@ -136,11 +99,12 @@ export const DragDropImage: FC<DragDropImageProps> = ({
     try {
       setLoading(true)
       const file = uploadRef?.current?.files?.[0]
+      console.log("🚀 ~ preview ~ file:", file)
       if (file) {
-        const result = await Service.upload.uploadImage(file)
+        const result = await Service.upload.uploadAudio(file)
         if (result) {
-          setPreviewData(result)
-          callBackImageUpload && callBackImageUpload(result)
+          setPreviewData(file.name)
+          callBackMediaUpload && callBackMediaUpload(result)
         }
       }
     } catch (error) {
@@ -156,12 +120,12 @@ export const DragDropImage: FC<DragDropImageProps> = ({
     // reader.readAsDataURL(file)
   }
 
-  const handleRemoveImage = () => {
-    setPreviewData("")
+  const handleRemoveFile = () => {
+    setPreviewData(null)
     if (uploadRef.current) {
       uploadRef.current.value = ""
     }
-    callBackImageUpload && callBackImageUpload("")
+    callBackMediaUpload && callBackMediaUpload("")
   }
 
   const renderContent = () => {
@@ -169,21 +133,23 @@ export const DragDropImage: FC<DragDropImageProps> = ({
       return <Loading />
     } else if (previewData) {
       return (
-        <div className={cn("h-full w-full")}>
-          <img src={previewData} className="h-full w-full object-contain" />
+        <div className={cn("flex h-full w-full flex-col items-center justify-center gap-y-2 px-4")}>
+          <HiMusicNote size={30} />
+
+          <span>{previewData}</span>
         </div>
       )
     }
 
     return (
       <div className={cn("flex h-full w-full flex-col items-center justify-center py-10")}>
-        <img src="/icons/icon-upload.svg" alt="Image" />
+        <img src="/icons/icon-upload.svg" alt="Audio" />
 
         <p className="mt-2 text-center text-sm font-medium text-neutral-500">
-          Drag & drop image or <span className="cursor-pointer text-blue-500">Browse</span>
+          Drag & drop audio file or <span className="cursor-pointer text-blue-500">Browse</span>
         </p>
 
-        <p className="mt-1 text-center text-sm text-neutral-500">Supported formates: JPEG, PNG, JPG</p>
+        <p className="mt-1 text-center text-sm text-neutral-500">Supported formates: MP3, OGG, WAV</p>
       </div>
     )
   }
@@ -195,8 +161,8 @@ export const DragDropImage: FC<DragDropImageProps> = ({
           <p className="text-sx text-stone-500">{title}</p>
 
           {previewData && (
-            <p className="text-sx cursor-pointer text-blue-500" onClick={handleRemoveImage}>
-              Remove image
+            <p className="text-sx cursor-pointer text-blue-500" onClick={handleRemoveFile}>
+              Remove file
             </p>
           )}
         </div>
@@ -219,7 +185,7 @@ export const DragDropImage: FC<DragDropImageProps> = ({
           {renderContent()}
         </div>
       </div>
-      <input ref={uploadRef} type="file" accept="image/*" className="hidden" onChange={selectImage} />
+      <input ref={uploadRef} type="file" accept="audio/*" className="hidden" onChange={selectFile} />
     </div>
   )
 }

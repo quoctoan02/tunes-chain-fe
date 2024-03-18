@@ -21,3 +21,9 @@ export enum MediaType {
   Artist = "Artists",
   LikedSongs = "LikedSongs",
 }
+
+export enum MediaFileType {
+  Image = "Image",
+  Audio = "Audio",
+  Video = "Video",
+}

@@ -4,14 +4,16 @@ import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2"
 import LibraryItem from "./library-item"
 import LikeButton from "../../libs/ui/buttons/like-button"
 import { BsPauseFill, BsPlayFill } from "react-icons/bs"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai"
 import VolumeSlider from "@/components/layouts/slider"
 import MediaItem from "./library-item"
 import Slider from "@/components/layouts/slider"
 import { SliderType } from "@/types/song.type"
 import usePlayerStore from "@/hooks/stores/use-song-store"
+import { convertDuration } from "@/utils/convert-duration"
 
+interface PlayerProps {}
 const Player = () => {
   // const { song } = useGetSongById(player.activeId);
 
@@ -22,14 +24,23 @@ const Player = () => {
   // }
 
   // const player = usePlayer();
-  const { volume, changeVolume, changeProgressTime, progressTime, isPlaying, toggleIsPlaying } = usePlayerStore()
-  console.log("🚀 ~ Player ~ isPlaying:", isPlaying)
-  console.log("🚀 ~ Player ~ volume:", volume, progressTime)
-  // const [isPlaying, setIsPlaying] = useState(false)
-
+  const audioRef = useRef<HTMLAudioElement>(null)
+  const [duration, setDuration] = useState(0)
+  const { isPlaying, setIsPlaying } = usePlayerStore()
+  const [progressTime, setProgressTime] = useState(0)
+  const [volume, setVolume] = useState(0)
   const Icon = isPlaying ? BsPauseFill : BsPlayFill
   const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave
+  const handleChangeDuration = ({ x }: { x: number }) => {
+    if (audioRef.current) {
+      setDuration(x)
 
+      if (!isPlaying) {
+        setIsPlaying(true)
+        audioRef.current.play()
+      }
+    }
+  }
   // const onPlayNext = () => {
   //   if (player.ids.length === 0) {
   //     return;
@@ -82,11 +93,47 @@ const Player = () => {
   //   }
   // }, [sound]);
 
+  const handleSetProgressTime = (x: number) => {
+    if (audioRef?.current) {
+      audioRef.current.currentTime = x
+      setProgressTime(x)
+
+      if (!isPlaying) {
+        setIsPlaying(true)
+        audioRef.current.play()
+      }
+    }
+  }
+
+  const handleLoadedData = () => {
+    if (audioRef.current) {
+      setDuration(audioRef.current.duration)
+      if (isPlaying) audioRef.current.play()
+    }
+  }
+  const handleSetVolume = (newVolume: number) => {
+    if (audioRef.current) {
+      audioRef.current.volume = newVolume // Cập nhật âm lượng của audio
+      setVolume(newVolume)
+    }
+  }
+  const handleSetIsPlaying = () => {
+    if (audioRef?.current) {
+      {
+        if (isPlaying) {
+          audioRef.current.pause()
+        } else {
+          audioRef.current.play()
+        }
+        setIsPlaying(!isPlaying)
+      }
+    }
+  }
   const toggleMute = () => {
     if (volume === 0) {
-      changeVolume(1)
+      handleSetVolume(1)
     } else {
-      changeVolume(0)
+      handleSetVolume(0)
     }
   }
   const song = {
@@ -124,7 +171,7 @@ const Player = () => {
           "
         >
           <div
-            // onClick={handlePlay}
+            onClick={handleSetIsPlaying}
             className="
               flex
               h-10
@@ -162,7 +209,7 @@ const Player = () => {
             "
             />
             <div
-              onClick={toggleIsPlaying}
+              onClick={handleSetIsPlaying}
               className="
               flex 
               h-10 
@@ -189,21 +236,30 @@ const Player = () => {
             />
           </div>
           <div className="flex items-center justify-between gap-2">
-            <span>0:00</span>
+            <span className="min-w-fit">{convertDuration(progressTime)}</span>
             <Slider
               value={progressTime}
               type={SliderType.Player}
-              maxValue={300}
-              onChange={(value) => changeProgressTime(value)}
+              maxValue={duration}
+              onChange={handleSetProgressTime}
             />
-            <span>5:00</span>
+            <audio
+              ref={audioRef}
+              src={
+                "https://res.cloudinary.com/ddedz2fxm/video/upload/v1710581237/tunes-chain/audios/a74c1cdb-35ca-49f7-be22-56f264a27228SauLoiTuKhuocThemeSongFromMAI-PhanManhQuynh-13780092.mp3"
+              }
+              onLoadedData={handleLoadedData}
+              onTimeUpdate={() => setProgressTime(audioRef?.current?.currentTime as number)}
+              onEnded={() => setIsPlaying(false)}
+            />
+            <span className="min-w-fit">{duration ? convertDuration(duration) : "--:--"}</span>
           </div>
         </div>
 
         <div className="hidden w-full justify-end pr-2 md:flex">
           <div className="flex w-[120px] items-center gap-x-2">
             <VolumeIcon onClick={toggleMute} className="cursor-pointer" size={34} />
-            <Slider value={volume} type={SliderType.Volume} onChange={(value) => changeVolume(value)} />
+            <Slider value={volume} type={SliderType.Volume} onChange={(value) => handleSetVolume(value)} />
           </div>
         </div>
       </div>

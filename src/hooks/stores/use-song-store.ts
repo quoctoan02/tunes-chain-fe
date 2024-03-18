@@ -6,10 +6,10 @@ interface playerStore {
   isPlaying: boolean
   volume: number
   progressTime: number
-  toggleIsPlaying: () => void
+  setIsPlaying: (isPlaying: boolean) => void
   setCurrentPlayingSong: (song: Song) => void
-  changeVolume: (volume: number) => void
-  changeProgressTime: (progressTime: number) => void
+  setVolume: (volume: number) => void
+  setProgressTime: (progressTime: number) => void
 }
 
 const usePlayerStore = create<playerStore>((set) => ({
@@ -17,10 +17,11 @@ const usePlayerStore = create<playerStore>((set) => ({
   isPlaying: false,
   volume: 50,
   progressTime: 0,
-  toggleIsPlaying: () => set((state) => ({ isPlaying: !state.isPlaying })),
+  // toggleIsPlaying: () => set((state) => ({ isPlaying: !state.isPlaying })),
+  setIsPlaying: (isPlaying) => set({ isPlaying }),
   setCurrentPlayingSong: (song) => set({ selectedSong: song }),
-  changeVolume: (volume) => set({ volume }),
-  changeProgressTime: (progressTime) => set({ progressTime }),
+  setVolume: (volume) => set({ volume }),
+  setProgressTime: (progressTime) => set({ progressTime }),
 }))
 
 export default usePlayerStore

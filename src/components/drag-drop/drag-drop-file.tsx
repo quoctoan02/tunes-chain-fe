@@ -1,4 +1,3 @@
-import { Loading } from "@/libs/ui/loading"
 import { Service } from "@/services/app.service"
 import { cn } from "@/utils/classnames"
 import { FC, useEffect, useRef, useState } from "react"
@@ -177,10 +176,10 @@ export const DragDropImage: FC<DragDropImageProps> = ({
 
     return (
       <div className={cn("flex h-full w-full flex-col items-center justify-center py-10")}>
-        <img src="/icons/icon-upload.svg" alt="Image" />
+        <img src={"/icons/icon-upload"} alt="Image" />
 
         <p className="mt-2 text-center text-sm font-medium text-neutral-500">
-          Drag & drop image or <span className="cursor-pointer text-blue-500">Browse</span>
+          Drag & drop files or <span className="cursor-pointer text-blue-500">Browse</span>
         </p>
 
         <p className="mt-1 text-center text-sm text-neutral-500">Supported formates: JPEG, PNG, JPG</p>

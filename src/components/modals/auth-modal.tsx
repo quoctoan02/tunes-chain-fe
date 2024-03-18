@@ -5,6 +5,7 @@ import React, { useEffect } from "react"
 import Modal from "./modal"
 import useAuthModal from "@/hooks/auth/use-auth-modal"
 import { DragDropImage } from "../drag-drop/drag-drop-image"
+import { DragDropMedia } from "../drag-drop/drag-drop-media"
 
 const AuthModal = () => {
   const { onClose, isOpen } = useAuthModal()
@@ -25,7 +26,7 @@ const AuthModal = () => {
   return (
     <Modal title="Welcome back" description="Login to your account." isOpen={isOpen} onChange={onChange}>
       <div>
-        <DragDropImage
+        <DragDropMedia
           title={"upload image"}
           // image={banner_images?.images.bannerImage}
           // callBackImageUpload={(image) => handleUploadImageAction(image, "bannerImage", "images")}

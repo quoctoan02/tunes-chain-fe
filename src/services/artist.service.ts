@@ -1,9 +1,8 @@
 import { http } from "@/libs/axios"
-import { UserInfo } from "@/types/auth.type"
 import { toastErrorResponse } from "@/utils/common"
 
-export class UploadService {
-  async uploadAudio(audio: string) {
+export class ArtistService {
+  async getInfo(audio: string) {
     try {
       let data = new FormData()
       data.append("audio", audio)
@@ -19,12 +18,12 @@ export class UploadService {
       throw error
     }
   }
-  async uploadVideo(video: string) {
+  async listRelatedAritsts(audio: string) {
     try {
       let data = new FormData()
-      data.append("video", video)
+      data.append("audio", audio)
 
-      const res = await http.post("/upload/video", data)
+      const res = await http.post("/upload/audio", data)
 
       if (res?.data) {
         return res.data
@@ -35,15 +34,31 @@ export class UploadService {
       throw error
     }
   }
-  async uploadImage(image: any) {
+  async listArtistAlbums(audio: string) {
     try {
       let data = new FormData()
-      data.append("image", image)
+      data.append("audio", audio)
 
-      const res = await http.post("/upload/image", data)
-      console.log("🚀 ~ UploadService ~ uploadImage ~ res:", res)
-      if (res?.data?.url) {
-        return res.data.url
+      const res = await http.post("/upload/audio", data)
+
+      if (res?.data) {
+        return res.data
+      }
+    } catch (error) {
+      console.log("🚀 ~ file: common.service.ts:14 ~ CommonService ~ uploadImage ~ error:", error)
+      toastErrorResponse(error)
+      throw error
+    }
+  }
+  async listArtistTopSongs(audio: string) {
+    try {
+      let data = new FormData()
+      data.append("audio", audio)
+
+      const res = await http.post("/upload/audio", data)
+
+      if (res?.data) {
+        return res.data
       }
     } catch (error) {
       console.log("🚀 ~ file: common.service.ts:14 ~ CommonService ~ uploadImage ~ error:", error)
