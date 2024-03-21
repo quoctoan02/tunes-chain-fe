@@ -55,28 +55,21 @@ const ListSong: React.FC<ListSongProps> = ({ songs }) => {
       </div> */}
       <div
         // onClick={() => onClick(data.id)}
-        className="group relative  flex w-full cursor-pointer items-center justify-between space-x-2 overflow-hidden rounded-lg px-5 py-2 text-neutral-500 transition hover:bg-neutral-400/10 lg:space-x-4"
+        className="group relative flex w-full items-center justify-between space-x-2 overflow-hidden rounded-lg px-5 py-2 text-neutral-500 transition lg:space-x-4"
       >
-        <div className="lg:w-100 flex min-w-fit items-center gap-x-4 lg:gap-x-8">
+        <div className="lg:w-100 min-w-90 flex items-center gap-x-4 lg:gap-x-8">
           <p>#</p>
-          {/* <div
-            className="
-          absolute 
-          bottom-24 
-          left-5
-        "
-          >
-            <PlayButton />
-          </div> */}
+          <p className="w-40">Title</p>
         </div>
-        <p>Title</p>
         <p className="w-40 truncate">Album</p>
-        <HiOutlineClock />
+        <div className="flex justify-around gap-x-4 px-4">
+          <HiOutlineClock />
 
-        {/* <div className="ml-auto flex items-center justify-between md:ml-0">
+          {/* <div className="ml-auto flex items-center justify-between md:ml-0">
         <p className="hidden w-40 md:block">{title}</p>
         <p className="w-12">{convertDuration(100 as number)}</p>
       </div> */}
+        </div>
       </div>
       {songs.map((item) => (
         <SongItem

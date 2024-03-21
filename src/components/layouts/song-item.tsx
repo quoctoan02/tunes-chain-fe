@@ -19,9 +19,9 @@ const SongItem: React.FC<SongItemProps> = ({ data: { id = 0, album_id, image, ti
       // onClick={() => onClick(data.id)}
       className="group relative  flex w-full cursor-pointer items-center justify-between space-x-2 overflow-hidden rounded-lg px-5 py-2 text-neutral-500 transition hover:bg-neutral-400/10 lg:space-x-4"
     >
-      <div className="lg:w-100 flex min-w-fit items-center gap-x-4 lg:gap-x-8">
+      <div className="lg:w-100 w-90 flex items-center gap-x-4 lg:gap-x-8">
         <p>{id + 1}</p>
-        <div
+        {/* <div
           className="
           absolute 
           bottom-24 
@@ -29,7 +29,7 @@ const SongItem: React.FC<SongItemProps> = ({ data: { id = 0, album_id, image, ti
         "
         >
           <PlayButton />
-        </div>
+        </div> */}
         <div
           className="
           relative
@@ -46,15 +46,16 @@ const SongItem: React.FC<SongItemProps> = ({ data: { id = 0, album_id, image, ti
             alt="Image"
           />
         </div>
-        <div className="min-w-48 flex h-full flex-col justify-center lg:w-72">
+        <div className="flex h-full flex-col justify-center lg:w-72">
           <p className="text-base  text-white"> {title}</p>
           <p className="text-sm  text-neutral-500"> {title}</p>
         </div>
       </div>
-      <p className="w-40 truncate"> {title}</p>
-      <LikeButton songId={id} />
-      <p className="w-12 truncate">{convertDuration(100 as number)}</p>
-
+      <p className="w-40 truncate">{title}</p>
+      <div className="flex justify-around gap-x-4 pl-4">
+        <LikeButton songId={id} />
+        <p className="w-12 truncate">{convertDuration(100 as number)}</p>
+      </div>
       {/* <div className="ml-auto flex items-center justify-between md:ml-0">
         <p className="hidden w-40 md:block">{title}</p>
         <p className="w-12">{convertDuration(100 as number)}</p>

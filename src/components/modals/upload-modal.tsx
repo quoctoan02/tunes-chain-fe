@@ -8,8 +8,7 @@ import Modal from "./modal"
 import Input from "@/libs/ui/input/input"
 import Button from "@/libs/ui/buttons/button"
 import { DragDropImage } from "../drag-drop/drag-drop-image"
-import { DragDropMedia } from "../drag-drop/drag-drop-media"
-import Dropdown from "antd/es/dropdown/dropdown"
+import { DragDropMedia } from "../drag-drop/drag-drop-audio"
 import InputSelect from "@/libs/ui/input/input-select"
 
 const UploadModal = () => {
@@ -101,7 +100,7 @@ const UploadModal = () => {
             id="song"
             {...register("song", { required: true })}
           /> */}
-          <DragDropMedia
+          <DragDropImage
             title={"upload image"}
             // image={banner_images?.images.bannerImage}
             // callBackImageUpload={(image) => handleUploadImageAction(image, "bannerImage", "images")}

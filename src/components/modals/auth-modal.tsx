@@ -5,7 +5,7 @@ import React, { useEffect } from "react"
 import Modal from "./modal"
 import useAuthModal from "@/hooks/auth/use-auth-modal"
 import { DragDropImage } from "../drag-drop/drag-drop-image"
-import { DragDropMedia } from "../drag-drop/drag-drop-media"
+import { DragDropMedia } from "../drag-drop/drag-drop-audio"
 
 const AuthModal = () => {
   const { onClose, isOpen } = useAuthModal()

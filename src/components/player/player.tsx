@@ -28,19 +28,10 @@ const Player = () => {
   const [duration, setDuration] = useState(0)
   const { isPlaying, setIsPlaying } = usePlayerStore()
   const [progressTime, setProgressTime] = useState(0)
-  const [volume, setVolume] = useState(0)
+  const [volume, setVolume] = useState(1)
   const Icon = isPlaying ? BsPauseFill : BsPlayFill
   const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave
-  const handleChangeDuration = ({ x }: { x: number }) => {
-    if (audioRef.current) {
-      setDuration(x)
 
-      if (!isPlaying) {
-        setIsPlaying(true)
-        audioRef.current.play()
-      }
-    }
-  }
   // const onPlayNext = () => {
   //   if (player.ids.length === 0) {
   //     return;

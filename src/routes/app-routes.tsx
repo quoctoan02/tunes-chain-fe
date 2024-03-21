@@ -11,6 +11,11 @@ import LikedSongsPage from "@/pages/user/liked"
 import ArtistLayout from "@/layouts/artist-layout"
 import AdminHomePage from "@/pages/artist/home"
 import MyMusicPage from "@/pages/artist/my-music"
+import ArtistPage from "@/pages/user/artist"
+import LoginPage from "@/pages/user/login"
+import SignupPage from "@/pages/user/signup"
+import PlaylistPage from "@/pages/user/playlist"
+import AlbumPage from "@/pages/user/album"
 
 interface AppRoutesProps {}
 
@@ -23,9 +28,9 @@ const routes: RouteObject[] = [
       { path: routePath.translation, element: <TranslationPage /> },
       { path: routePath.search, element: <SearchPage /> },
       { path: routePath.likedSongs, element: <LikedSongsPage /> },
-      { path: routePath.playlist, element: <LikedSongsPage /> },
-      { path: routePath.album, element: <LikedSongsPage /> },
-      { path: routePath.artistInfo, element: <LikedSongsPage /> },
+      { path: routePath.playlist, element: <PlaylistPage /> },
+      { path: routePath.album, element: <AlbumPage /> },
+      { path: routePath.artistInfo, element: <ArtistPage /> },
     ],
   },
   {
@@ -42,7 +47,11 @@ const routes: RouteObject[] = [
   // Routes with empty layout
   {
     element: <EmptyLayout />,
-    children: [{ path: routePath.notFound, element: <NotFoundPage /> }],
+    children: [
+      { path: routePath.notFound, element: <NotFoundPage /> },
+      { path: routePath.login, element: <LoginPage /> },
+      { path: routePath.signup, element: <SignupPage /> },
+    ],
   },
 ]
 

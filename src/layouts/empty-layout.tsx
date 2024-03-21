@@ -5,7 +5,7 @@ interface EmptyLayoutProps {}
 
 const EmptyLayout: FC<EmptyLayoutProps> = () => {
   return (
-    <div className="min-h-screen">
+    <div className="flex h-screen bg-neutral-900/90">
       <Outlet />
     </div>
   )
