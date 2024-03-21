@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 import useAuthModal from "@/hooks/auth/use-auth-modal"
 import SearchInput from "@/libs/ui/input/seach-input"
 import useSearchInputStore from "@/hooks/stores/use-search-input-store"
+import useUploadModal from "@/hooks/upload/use-upload-modal"
 
 interface HeaderProps {
   children?: React.ReactNode
@@ -16,7 +17,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ children, className }) => {
   // const player = usePlayer();
   const navigate = useNavigate()
-  const authModal = useAuthModal()
+  const authModal = useUploadModal()
   const { isShow: isShowSearchInput } = useSearchInputStore()
 
   // const supabaseClient = useSupabaseClient();

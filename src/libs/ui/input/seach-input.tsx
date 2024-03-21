@@ -29,7 +29,7 @@ const SearchInput = () => {
 
   return (
     <Input
-      className="w-full min-w-[400px] max-w-[500px]"
+      className="w-full min-w-[400px] max-w-[500px] rounded-full"
       placeholder="What do you want to listen to?"
       value={value}
       onChange={(e) => setValue(e.target.value)}

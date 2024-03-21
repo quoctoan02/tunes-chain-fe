@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import { Outlet } from "react-router-dom"
 
-import Player from "@/components/layouts/player"
+import Player from "@/components/player/player"
 import SideBar from "@/components/layouts/sidebar"
 import Center from "@/components/layouts/center"
 import Header from "@/components/layouts/header"
