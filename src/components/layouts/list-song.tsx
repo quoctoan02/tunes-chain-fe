@@ -55,13 +55,13 @@ const ListSong: React.FC<ListSongProps> = ({ songs }) => {
       </div> */}
       <div
         // onClick={() => onClick(data.id)}
-        className="group relative flex w-full items-center justify-between space-x-2 overflow-hidden rounded-lg px-5 py-2 text-neutral-500 transition lg:space-x-4"
+        className="group relative flex w-full items-center justify-between overflow-hidden rounded-lg px-5 py-2 text-neutral-500 transition lg:space-x-4"
       >
         <div className="lg:w-100 min-w-90 flex items-center gap-x-4 lg:gap-x-8">
           <p>#</p>
-          <p className="w-40">Title</p>
+          <p className="px-[80px]">Title</p>
         </div>
-        <p className="w-40 truncate">Album</p>
+        <div className="w-[40px]">Album</div>
         <div className="flex justify-around gap-x-4 px-4">
           <HiOutlineClock />
 
