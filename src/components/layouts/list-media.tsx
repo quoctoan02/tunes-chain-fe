@@ -1,7 +1,7 @@
 "use client"
 
 import MediaItem from "./media-item"
-import { IMediaItem } from "@/types/media.type"
+import { IMediaItem, MediaType } from "@/types/media.type"
 
 interface ListMediaProps {
   medias: Partial<IMediaItem>[]
@@ -31,6 +31,7 @@ const ListMedia: React.FC<ListMediaProps> = ({ medias }) => {
       {medias.map((item) => (
         <MediaItem
           //     onClick={(id: string) => onPlay(id)}
+          type={MediaType.Artist}
           key={item.id}
           data={item}
         />

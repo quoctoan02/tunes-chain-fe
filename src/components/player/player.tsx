@@ -12,6 +12,7 @@ import Slider from "@/components/layouts/slider"
 import { SliderType } from "@/types/song.type"
 import usePlayerStore from "@/hooks/stores/use-song-store"
 import { convertDuration } from "@/utils/convert-duration"
+import { MediaType } from "@/types/media.type"
 
 interface PlayerProps {}
 const Player = () => {
@@ -129,8 +130,8 @@ const Player = () => {
   }
   const song = {
     id: 1,
-    artist: "Phan manh quynh",
-    title: "Sau loi tu khuoc",
+    artist_name: "Phan manh quynh",
+    name: "Sau loi tu khuoc",
   }
   return (
     <div
@@ -146,8 +147,8 @@ const Player = () => {
       <div className="grid h-full grid-cols-2 md:grid-cols-3">
         <div className="flex w-full justify-start">
           <div className="flex items-center gap-x-4">
-            <MediaItem data={song} />
-            <LikeButton songId={song.id} />
+            <MediaItem data={song} type={MediaType.Song} />
+            <LikeButton songId={song.id} isHide={false} size={24} />
           </div>
         </div>
 

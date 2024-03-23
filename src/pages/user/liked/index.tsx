@@ -7,19 +7,19 @@ export const revalidate = 0
 const songs: Partial<IMediaItem>[] = [
   {
     id: 1,
-    artist: "Phan manh quynh",
+    artist_name: "Phan manh quynh",
     title: "Sau loi tu khuoc",
     image: "/images/default/liked.png",
   },
   {
     id: 2,
-    artist: "Phan manh quynh",
+    artist_name: "Phan manh quynh",
     title: "Sau loi tu khuoc",
     image: "/images/default/liked.png",
   },
   {
     id: 3,
-    artist: "Phan manh quynh",
+    artist_name: "Phan manh quynh",
     title: "Sau loi tu khuoc",
     image: "/images/default/liked.png",
   },
@@ -41,7 +41,7 @@ const LikedSongsPage = () => {
         >
           <div className="relative h-32 w-32 lg:h-44 lg:w-44">
             <img
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full rounded-md object-cover "
               src="/images/default/liked.png"
               alt="Playlist"
             />

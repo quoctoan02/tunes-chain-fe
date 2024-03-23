@@ -1,8 +1,9 @@
+import { ArtistItem } from "./media.type"
+
 export interface Song {
   id: number
   album_id: number
-  artist: string
-  title: string
+  artists: Partial<ArtistItem>[]
   image: string
   thumbnail: string
   name: string

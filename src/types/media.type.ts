@@ -7,19 +7,28 @@ export interface PlaylistItem {
 }
 export interface AlbumItem {
   id?: number
+  name: string
   type: MediaType
-  title: string
-  artist: string
+  artist_name: string
   image: string
 }
+export interface ArtistItem {
+  id?: number
+  name: string
+  avatar: string
+  background: string
+  type: MediaType
+  genres: string
+}
 
-export interface IMediaItem extends AlbumItem, PlaylistItem {}
+export interface IMediaItem extends AlbumItem, PlaylistItem, ArtistItem {}
 
 export enum MediaType {
   Playlist = "Playlist",
-  Albums = "Albums",
-  Artist = "Artists",
+  Album = "Album",
+  Artist = "Artist",
   LikedSongs = "LikedSongs",
+  Song = "Song",
 }
 
 export enum MediaFileType {

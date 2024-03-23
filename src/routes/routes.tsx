@@ -6,7 +6,7 @@ export const routePath = {
   comingSoon: "/coming-soon",
   notFound: "*",
   search: "/search",
-  likedSongs: "/liked/songs",
+  likedSongs: "/liked-songs",
   artistInfo: "/artist-info/:id",
   album: "/album/:id",
   playlist: "/playlist/:id",

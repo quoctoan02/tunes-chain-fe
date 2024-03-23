@@ -120,7 +120,7 @@ const ArtistPage = () => {
         <ChevronDownIcon className="h-5 w-5" />
       </div>
       <div
-        onScroll={(e) => changeOpacity(e.target.scrollTop)}
+        // onScroll={(e) => changeOpacity(e.target.scrollTop)}
         className="relative -top-20 h-screen overflow-y-scroll bg-neutral-900"
       >
         <section className={`flex items-end space-x-7 bg-gradient-to-b to-neutral-900 ${color} h-80 p-8 text-white`}>

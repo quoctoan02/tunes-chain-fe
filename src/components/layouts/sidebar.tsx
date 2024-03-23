@@ -28,25 +28,25 @@ const Sidebar: React.FC<SidebarProps> = () => {
   )
   return (
     <div
-      className="hidden 
+      className="
+      flex 
       h-full 
-      w-[300px] 
+      w-[300px]
       flex-col 
       gap-y-2 
       bg-black 
       px-2
-      pt-2 
-      md:flex"
+      pt-2"
     >
-      <Box>
+      <Box className="h-fit">
         <div className="flex flex-col gap-y-4 px-5 py-4">
           {routes.map((route) => {
             return <SidebarItem key={route.label} {...route}></SidebarItem>
           })}
         </div>
       </Box>
-      <Box className="h-full">
-        <div className="flex flex-col gap-y-4 px-5 py-4">
+      <Box className=" flex-1">
+        <div className="flex h-full w-full flex-col gap-y-4 py-4">
           <Library />
         </div>
       </Box>

@@ -2,12 +2,17 @@
 
 import { useEffect, useState } from "react"
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"
+import { twMerge } from "tailwind-merge"
 
 interface LikeButtonProps {
-  songId: number
+  songId?: number
+  className?: string
+  isHide?: boolean
+  size?: number
+  onClick?: (isLike: boolean) => void
 }
 
-const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
+const LikeButton: React.FC<LikeButtonProps> = ({ songId, className, isHide = true, size = 20, onClick }) => {
   // const router = useRouter();
   // const {
   //   supabaseClient
@@ -41,6 +46,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
   const Icon = isLiked ? AiFillHeart : AiOutlineHeart
 
   const handleLike = async () => {
+    // onClick(!isLiked)
     setIsLiked(!isLiked)
     //   if (!user) {
     //     return authModal.onOpen();
@@ -79,15 +85,18 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
 
   return (
     <button
-      className="
+      className={twMerge(
+        `
         cursor-pointer 
         transition 
         hover:scale-110
-        group-hover:translate-y-0
-      "
+      `,
+        isHide && "opacity-0 group-hover:translate-y-0 group-hover:opacity-100",
+        className,
+      )}
       onClick={handleLike}
     >
-      <Icon color={isLiked ? "#22c55e" : "#737373"} size={20} />
+      <Icon color={isLiked ? "#22c55e" : "#737373"} size={size} />
     </button>
   )
 }

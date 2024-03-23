@@ -1,26 +1,40 @@
-import { FaPlay } from "react-icons/fa"
+import React, { useState } from "react"
+import { FaPause, FaPlay } from "react-icons/fa"
+import { twMerge } from "tailwind-merge"
 
-const PlayButton = () => {
+interface PlayButtonProps {
+  className?: string
+  isHide?: boolean
+  size?: number
+  onClick?: (isPlaying: boolean) => void
+}
+const PlayButton: React.FC<PlayButtonProps> = ({ className, isHide = true, size = 15, onClick }) => {
+  const [isPlaying, setIsplaying] = useState(false)
+  const handleOnPlay = () => {
+    setIsplaying(!isPlaying)
+    // onClick(!isPlaying)
+  }
   return (
     <button
-      className="
-        translate 
+      className={twMerge(
+        `
+      translate 
         flex 
-        translate-y-1/4 
-        items-center 
+        items-center
         justify-center 
         rounded-full 
         bg-green-500 
         p-4 
-        opacity-0 
-        drop-shadow-md
+        drop-shadow-md 
         transition
         hover:scale-110 
-        group-hover:translate-y-0
-        group-hover:opacity-100
-      "
+        `,
+        isHide && "translate-y-1/4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100",
+        className,
+      )}
+      onClick={handleOnPlay}
     >
-      <FaPlay className="text-black" />
+      {isPlaying ? <FaPause className="text-black" size={size} /> : <FaPlay className="text-black" size={size} />}
     </button>
   )
 }

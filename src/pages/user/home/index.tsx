@@ -3,12 +3,32 @@ import ListSong from "../../../components/layouts/list-media"
 import { Song } from "@/types/song.type"
 import Center from "@/components/layouts/center"
 import ListMedia from "../../../components/layouts/list-media"
+import { useEffect, useState } from "react"
+import { AlbumService } from "@/services/album.service"
+import { ArtistService } from "@/services/artist.service"
+import { Service } from "@/services/app.service"
 
 interface HomePageProps {
   className?: string
 }
 
 const HomePage: React.FC<HomePageProps> = ({ className }) => {
+  const [listAlbums, setListAlbums] = useState([])
+  const [listArtists, setListArtists] = useState([])
+
+  useEffect(() => {
+    const listAllAlbum = async () => {
+      const res = await Service.artist.listAll()
+      console.log("🚀 ~ listAllAlbum ~ res:", res)
+      if (res?.length) {
+        setListArtists(res)
+      }
+    }
+
+    listAllAlbum()
+    return () => {}
+  }, [])
+  console.log("🚀 ~ listArtists:", listArtists)
   // const songs = await getSongs();
   const songs: Partial<Song>[] = [
     {
@@ -64,11 +84,11 @@ const HomePage: React.FC<HomePageProps> = ({ className }) => {
           {/* <ListItem name="Liked Songs" image="/images/liked.png" href="liked" /> */}
         </div>
       </div>
-      <div className="mb-7 mt-2 px-6">
+      <div className="mb-7 mt-2">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold text-white">Newest songs</h1>
         </div>
-        <ListMedia medias={songs} />
+        <ListMedia medias={listArtists} />
       </div>
     </>
     //   </Center>

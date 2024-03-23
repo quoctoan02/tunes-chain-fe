@@ -1,7 +1,7 @@
 import { http } from "@/libs/axios"
 import { toastErrorResponse } from "@/utils/common"
 
-export class AlbumService {
+export class UserLibraryService {
   async getInfo(audio: string) {
     try {
       let data = new FormData()
@@ -18,9 +18,9 @@ export class AlbumService {
       throw error
     }
   }
-  async listAll() {
+  async listFavorite(type?: string) {
     try {
-      const res = await http.get("/album/list")
+      const res = await http.get("/user-library/list-favorite", { params: { type } })
 
       if (res?.data) {
         return res.data

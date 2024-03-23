@@ -13,18 +13,18 @@ const AdminHomePage: React.FC<AdminHomePageProps> = ({ className }) => {
   const songs: Partial<Song>[] = [
     {
       id: 1,
-      artist: "Phan manh quynh",
-      title: "Sau loi tu khuoc",
+      artists: [{ id: 1, name: "Phan manh quynh" }],
+      name: "Sau loi tu khuoc",
     },
     {
       id: 2,
-      artist: "Phan manh quynh",
-      title: "Sau loi tu khuoc",
+      artists: [{ id: 1, name: "Phan manh quynh" }],
+      name: "Sau loi tu khuoc",
     },
     {
       id: 3,
-      artist: "Phan manh quynh",
-      title: "Sau loi tu khuoc",
+      artists: [{ id: 1, name: "Phan manh quynh" }],
+      name: "Sau loi tu khuoc",
     },
   ]
   return (

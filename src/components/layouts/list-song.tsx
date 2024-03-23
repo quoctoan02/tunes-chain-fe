@@ -3,6 +3,9 @@
 import { Song } from "@/types/song.type"
 import SongItem from "./song-item"
 import { HiOutlineClock } from "react-icons/hi2"
+import PlayButton from "@/libs/ui/buttons/play-button"
+import LikeButton from "@/libs/ui/buttons/like-button"
+import MediaBar from "./media-bar"
 
 interface ListSongProps {
   songs: Partial<Song>[]
@@ -17,53 +20,18 @@ const ListSong: React.FC<ListSongProps> = ({ songs }) => {
 
   return (
     <div className="flex flex-col space-y-1 pb-28">
-      {/* <table className="table-fixed">
-        <thead>
-          <tr className="text-left hover:border-collapse">
-            <th>Song</th>
-            <th>Artist</th>
-            <th>Year</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-            <td>Malcolm Lockyer</td>
-            <td>1961</td>
-          </tr>
-          <tr>
-            <td>Witchy Woman</td>
-            <td>The Eagles</td>
-            <td>1972</td>
-          </tr>
-          <tr>
-            <td>Shining Star</td>
-            <td>Earth, Wind, and Fire</td>
-            <td>1975</td>
-          </tr>
-        </tbody>
-      </table>
-      <div role="grid" className="outline-none">
-        <div role="presentation" className="t-[64px] sticky h-[36px]">
-          <div role="row" className="grid ">
-            haha
-          </div>
-        </div>
-        <div role="presentation">
-          <div role="row">hihi</div>
-        </div>
-      </div> */}
       <div
         // onClick={() => onClick(data.id)}
-        className="group relative flex w-full items-center justify-between overflow-hidden rounded-lg px-5 py-2 text-neutral-500 transition lg:space-x-4"
+        className="group relative  flex w-full items-center justify-between space-x-2 overflow-hidden rounded-lg px-5 py-2 text-neutral-500 transition lg:space-x-3"
       >
-        <div className="lg:w-100 min-w-90 flex items-center gap-x-4 lg:gap-x-8">
-          <p>#</p>
-          <p className="px-[80px]">Title</p>
+        <div className="flex items-center gap-x-4 lg:gap-x-8">
+          <div className="w-6">#</div>
+          <p className="w-80 lg:w-96">Title</p>
         </div>
-        <div className="w-[40px]">Album</div>
-        <div className="flex justify-around gap-x-4 px-4">
-          <HiOutlineClock />
+        <p className="w-48 truncate">Album</p>
+        <p className="w-28 truncate">Listens</p>
+        <div className="flex w-28 justify-center">
+          <HiOutlineClock size={22} />
 
           {/* <div className="ml-auto flex items-center justify-between md:ml-0">
         <p className="hidden w-40 md:block">{title}</p>

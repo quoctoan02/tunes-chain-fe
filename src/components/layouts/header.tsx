@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
   //   }
   // }
   return (
-    <div className="flex min-h-[58px] w-full items-center justify-between gap-x-4 pb-3">
+    <div className="sticky top-0 z-50 flex min-h-[58px] w-full items-center justify-between gap-x-4 bg-neutral-900 px-6  py-3">
       <div className="flex gap-x-4">
         <div className="hidden items-center gap-x-3 md:flex">
           <button
@@ -122,7 +122,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
         <>
           <div>
             <Button
-              onClick={authModal.onOpen}
+              onClick={() => navigate("/signup")}
               className="
                   bg-transparent 
                   font-medium 
@@ -133,7 +133,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
             </Button>
           </div>
           <div>
-            <Button onClick={authModal.onOpen} className="bg-white px-6 py-2">
+            <Button onClick={() => navigate("/login")} className="bg-white px-6 py-2">
               Log in
             </Button>
           </div>

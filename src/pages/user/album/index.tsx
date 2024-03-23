@@ -1,30 +1,32 @@
 import ListSong from "@/components/layouts/list-song"
+import MediaBar from "@/components/layouts/media-bar"
 import { useChangeBgColor } from "@/hooks/render/use-change-bg-color"
 import { IMediaItem } from "@/types/media.type"
+import { Song } from "@/types/song.type"
+import { useParams, useSearchParams } from "react-router-dom"
 
 export const revalidate = 0
 
-const songs: Partial<IMediaItem>[] = [
+const songs: Partial<Song>[] = [
   {
     id: 1,
-    artist: "Phan manh quynh",
-    title: "Sau loi tu khuoc",
-    image: "/images/default/liked.png",
+    artists: [{ id: 1, name: "Phan manh quynh" }],
+    name: "Sau loi tu khuoc",
   },
   {
     id: 2,
-    artist: "Phan manh quynh",
-    title: "Sau loi tu khuoc",
-    image: "/images/default/liked.png",
+    artists: [{ id: 1, name: "Phan manh quynh" }],
+    name: "Sau loi tu khuoc",
   },
   {
     id: 3,
-    artist: "Phan manh quynh",
-    title: "Sau loi tu khuoc",
-    image: "/images/default/liked.png",
+    artists: [{ id: 1, name: "Phan manh quynh" }],
+    name: "Sau loi tu khuoc",
   },
 ]
-const AlbumPage = () => {
+const AlbumPage = ({ ...props }) => {
+  const { id } = useParams()
+  console.log(id)
   // const songs = await getLikedSongs();
   useChangeBgColor()
   return (
@@ -41,7 +43,7 @@ const AlbumPage = () => {
         >
           <div className="relative h-32 w-32 lg:h-44 lg:w-44">
             <img
-              className="absolute inset-0 h-full w-full object-cover"
+              className=" absolute inset-0 h-full w-full rounded-md object-cover"
               src="/images/default/liked.png"
               alt="Playlist"
             />
@@ -61,6 +63,7 @@ const AlbumPage = () => {
             </h1>
           </div>
         </div>
+        <MediaBar />
         <ListSong songs={songs} />
       </div>
       {/* <LikedContent songs={songs} /> */}
