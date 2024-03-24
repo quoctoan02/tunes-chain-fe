@@ -1,4 +1,4 @@
-import { Button } from "@/libs/ui/button"
+import { Button } from "@/libs/ui/button-demo"
 import Modal from "@/libs/ui/modal"
 import { FC, useState } from "react"
 

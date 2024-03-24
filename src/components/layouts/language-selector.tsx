@@ -6,7 +6,7 @@ import { BsCheckLg } from "react-icons/bs"
 import { LiaLanguageSolid } from "react-icons/lia"
 
 import { LANGUAGES_OPTIONS } from "@/configs/languages/languages.config"
-import { Button } from "@/libs/ui/button"
+import { Button } from "@/libs/ui/button-demo"
 
 export const LanguageSelector: FC = () => {
   const { i18n } = useTranslation()

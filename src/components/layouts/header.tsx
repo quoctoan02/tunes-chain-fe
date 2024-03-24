@@ -1,4 +1,4 @@
-import { BiSearch } from "react-icons/bi"
+import { BiChevronDown, BiSearch } from "react-icons/bi"
 import { FaUserAlt } from "react-icons/fa"
 import { HiHome } from "react-icons/hi"
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx"
@@ -8,6 +8,10 @@ import useAuthModal from "@/hooks/auth/use-auth-modal"
 import SearchInput from "@/libs/ui/input/seach-input"
 import useSearchInputStore from "@/hooks/stores/use-search-input-store"
 import useUploadModal from "@/hooks/upload/use-upload-modal"
+import { ConnectWalletWrapper } from "../wallet/connect-wallet-wrapper"
+import { Dropdown } from "antd"
+import { truncateAddress } from "@/utils/string"
+import { useActive } from "@/hooks/wallet/use-active"
 
 interface HeaderProps {
   children?: React.ReactNode
@@ -19,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
   const navigate = useNavigate()
   const authModal = useUploadModal()
   const { isShow: isShowSearchInput } = useSearchInputStore()
-
+  const { disconnect, account } = useActive()
   // const supabaseClient = useSupabaseClient();
   // const { user } = useUser();
 
@@ -33,7 +37,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
   //   }
   // }
   return (
-    <div className="sticky top-0 z-50 flex min-h-[58px] w-full items-center justify-between gap-x-4 bg-neutral-900 px-6  py-3">
+    <div className="sticky top-0 z-10 flex min-h-[58px] w-full items-center justify-between gap-x-4 bg-neutral-900 px-6  py-3">
       <div className="flex gap-x-4">
         <div className="hidden items-center gap-x-3 md:flex">
           <button
@@ -114,12 +118,16 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
           >
             Logout
           </Button>
-          <Button onClick={() => navigate("/account")} className="bg-white">
+          <Button
+            // onClick={() => navigate("/account")}
+            onClick={authModal.onOpen}
+            className="bg-white"
+          >
             <FaUserAlt />
           </Button>
         </div>
         {/* ) : ( */}
-        <>
+        <div>
           <div>
             <Button
               onClick={() => navigate("/signup")}
@@ -137,7 +145,27 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
               Log in
             </Button>
           </div>
-        </>
+          <ConnectWalletWrapper requiredLogin={true}>
+            <Dropdown
+              menu={{
+                items: [
+                  {
+                    key: "disconnect",
+                    label: <button onClick={disconnect}>Disconnect</button>,
+                  },
+                ],
+              }}
+            >
+              <Button
+                type="button"
+                className="hover:opacity-1 flex w-36 items-center justify-between gap-1 bg-white pl-3 pr-2"
+              >
+                {account && truncateAddress(account, 6)}
+                <BiChevronDown className="text-xl" />
+              </Button>
+            </Dropdown>
+          </ConnectWalletWrapper>
+        </div>
         {/* )} */}
       </div>
     </div>

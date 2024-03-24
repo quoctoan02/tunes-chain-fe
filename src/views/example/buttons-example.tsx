@@ -1,5 +1,5 @@
 import useCopyToClipboard from "@/hooks/render/use-copy-to-clipboard"
-import { Button } from "@/libs/ui/button"
+import { Button } from "@/libs/ui/button-demo"
 import { SearchOutlined } from "@ant-design/icons"
 import { Tooltip } from "antd"
 import { FC } from "react"

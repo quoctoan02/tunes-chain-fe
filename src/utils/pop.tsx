@@ -1,4 +1,4 @@
-import { Button } from "@/libs/ui/button"
+import { Button } from "@/libs/ui/button-demo"
 import { Loading } from "@/libs/ui/loading"
 import { t } from "i18next"
 import { HiExternalLink } from "react-icons/hi"

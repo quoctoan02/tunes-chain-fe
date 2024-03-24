@@ -1,15 +1,17 @@
 import * as Dialog from "@radix-ui/react-dialog"
 import { IoMdClose } from "react-icons/io"
+import { twMerge } from "tailwind-merge"
 
 interface ModalProps {
   isOpen: boolean
   onChange: (open: boolean) => void
   title: string
-  description: string
+  description?: string
   children: React.ReactNode
+  className?: string
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onChange, title, description, children }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, onChange, title, description, children, className }) => {
   return (
     <Dialog.Root open={isOpen} defaultOpen={isOpen} onOpenChange={onChange}>
       <Dialog.Portal>
@@ -17,18 +19,21 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onChange, title, description, chi
           className="
             fixed 
             inset-0 
-            bg-neutral-900/90 
+            z-20 
+            bg-neutral-900/90
             backdrop-blur-sm
           "
         />
         <Dialog.Content
-          className="
+          className={twMerge(
+            `
             fixed 
             left-[50%] 
             top-[50%] 
+            z-20 
             h-full 
             max-h-full 
-            w-full 
+            w-fit 
             translate-x-[-50%] 
             translate-y-[-50%] 
             rounded-md 
@@ -39,10 +44,12 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onChange, title, description, chi
             drop-shadow-md 
             focus:outline-none 
             md:h-auto 
-            md:max-h-[85vh] 
-            md:w-[90vw] 
-            md:max-w-[450px]
-          "
+            md:max-h-[80vh] 
+            md:w-[40vw]
+            md:max-w-[60vw]
+          `,
+            className,
+          )}
         >
           <Dialog.Title
             className="

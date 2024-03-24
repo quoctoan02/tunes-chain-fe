@@ -5,7 +5,7 @@ import { useNetwork } from "wagmi"
 import { defaultChain, supportedChains } from "@/configs/chains.config"
 import { useActive } from "@/hooks/wallet/use-active"
 import { useChainSetup } from "@/hooks/wallet/use-chain-setup"
-import { Button } from "@/libs/ui/button"
+import { Button } from "@/libs/ui/button-demo"
 import Modal from "@/libs/ui/modal"
 
 interface RequiredChainModalProps {}

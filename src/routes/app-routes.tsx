@@ -16,6 +16,8 @@ import LoginPage from "@/pages/user/login"
 import SignupPage from "@/pages/user/signup"
 import PlaylistPage from "@/pages/user/playlist"
 import AlbumPage from "@/pages/user/album"
+import ExamplePage from "@/pages/example"
+import DemoLayout from "@/layouts/demo-layout"
 
 interface AppRoutesProps {}
 
@@ -28,7 +30,7 @@ const routes: RouteObject[] = [
       { path: routePath.translation, element: <TranslationPage /> },
       { path: routePath.search, element: <SearchPage /> },
       { path: routePath.likedSongs, element: <LikedSongsPage /> },
-      { path: routePath.playlist, element: <PlaylistPage /> },
+      { path: routePath.playlist, element: <ExamplePage /> },
       { path: routePath.album, element: <AlbumPage /> },
       { path: routePath.artistInfo, element: <ArtistPage /> },
     ],
@@ -52,6 +54,10 @@ const routes: RouteObject[] = [
       { path: routePath.login, element: <LoginPage /> },
       { path: routePath.signup, element: <SignupPage /> },
     ],
+  },
+  {
+    element: <DemoLayout />,
+    children: [{ path: routePath.example, element: <ExamplePage /> }],
   },
 ]
 

@@ -1,4 +1,4 @@
-import { Button } from "@/libs/ui/button"
+import { Button } from "@/libs/ui/button-demo"
 import { popError, popPending, popPendingConfirm, popSuccess } from "@/utils/pop"
 import { FC } from "react"
 

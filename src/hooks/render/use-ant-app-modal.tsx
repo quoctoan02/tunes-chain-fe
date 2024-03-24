@@ -10,7 +10,7 @@ import { App, Modal, ModalFuncProps } from "antd"
 import { ReactNode, useCallback } from "react"
 import { Address } from "viem"
 
-import { Button } from "@/libs/ui/button"
+import { Button } from "@/libs/ui/button-demo"
 import { ExternalLink } from "@/libs/ui/external-link"
 import { Loading } from "@/libs/ui/loading"
 import { getTxUrl } from "@/utils/web3"

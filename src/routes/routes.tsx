@@ -12,6 +12,7 @@ export const routePath = {
   playlist: "/playlist/:id",
   login: "/login",
   signup: "/signup",
+  example: "/example",
 } as const
 
 export const artistRoutePath = {

@@ -5,7 +5,7 @@ import { HiMenu } from "react-icons/hi"
 import { Link, NavLink } from "react-router-dom"
 
 import { useActive } from "@/hooks/wallet/use-active"
-import { Button } from "@/libs/ui/button"
+import { Button } from "@/libs/ui/button-demo"
 import { routePath, routes } from "@/routes/routes"
 import { cn } from "@/utils/classnames"
 import { truncateAddress } from "@/utils/string"
@@ -60,7 +60,7 @@ const HeaderDemo: FC<HeaderProps> = () => {
                       ],
                     }}
                   >
-                    <Button type="primary" className="gap-1 px-2">
+                    <Button className="gap-1 px-2">
                       {account && truncateAddress(account)}
                       <BiChevronDown className="text-xl" />
                     </Button>

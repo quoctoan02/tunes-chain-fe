@@ -6,7 +6,7 @@ import { HiGlobe } from "react-icons/hi"
 
 import { supportedChains } from "@/configs/chains.config"
 import { useChainSetup } from "@/hooks/wallet/use-chain-setup"
-import { Button } from "@/libs/ui/button"
+import { Button } from "@/libs/ui/button-demo"
 
 export const ChainSelector: FC = () => {
   const { currentChain, chains, selectChain, isSwitchingChain } = useChainSetup()

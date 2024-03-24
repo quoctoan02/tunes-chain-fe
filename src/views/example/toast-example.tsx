@@ -1,4 +1,4 @@
-import { Button } from "@/libs/ui/button"
+import { Button } from "@/libs/ui/button-demo"
 import { toastContent } from "@/utils/toast"
 import { FC } from "react"
 import { toast } from "react-toastify"

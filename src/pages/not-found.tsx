@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 
 import { Container } from "@/components/layouts/container"
 import MetaHead from "@/components/layouts/metahead"
-import { Button } from "@/libs/ui/button"
+import { Button } from "@/libs/ui/button-demo"
 import { routePath } from "@/routes/routes"
 
 interface NotFoundPageProps {}

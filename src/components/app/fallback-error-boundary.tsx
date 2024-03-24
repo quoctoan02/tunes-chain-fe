@@ -4,7 +4,7 @@ import { FallbackProps } from "react-error-boundary"
 import { BiReset } from "react-icons/bi"
 import { TfiReload } from "react-icons/tfi"
 
-import { Button } from "@/libs/ui/button"
+import { Button } from "@/libs/ui/button-demo"
 import { routePath } from "@/routes/routes"
 import { AiFillHome } from "react-icons/ai"
 import { Container } from "../layouts/container"

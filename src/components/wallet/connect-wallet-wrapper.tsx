@@ -4,7 +4,7 @@ import { FC, ReactElement, cloneElement } from "react"
 import { useClientStore } from "@/hooks/stores/use-client-store"
 import { useUserStore } from "@/hooks/stores/use-user-store"
 import { useActive } from "@/hooks/wallet/use-active"
-import { Button, ButtonProps } from "@/libs/ui/button"
+import { Button, ButtonProps } from "@/libs/ui/button-demo"
 import { cn } from "@/utils/classnames"
 
 interface ConnectWalletWrapperProps extends ButtonProps {

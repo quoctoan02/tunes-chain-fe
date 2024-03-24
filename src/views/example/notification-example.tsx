@@ -1,5 +1,5 @@
 import { useAntAppModal } from "@/hooks/render/use-ant-app-modal"
-import { Button } from "@/libs/ui/button"
+import { Button } from "@/libs/ui/button-demo"
 import { sleep } from "@/utils/promise"
 import { App, Modal } from "antd"
 import { FC } from "react"

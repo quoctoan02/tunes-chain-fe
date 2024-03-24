@@ -1,7 +1,7 @@
 import { FC } from "react"
 
 import { useAppSettingsStore } from "@/hooks/stores/use-app-settings-store"
-import { Button } from "@/libs/ui/button"
+import { Button } from "@/libs/ui/button-demo"
 
 export const ToggleTheme: FC = () => {
   const { theme, toggleTheme } = useAppSettingsStore()

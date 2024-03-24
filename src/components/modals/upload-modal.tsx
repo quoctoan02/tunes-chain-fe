@@ -10,6 +10,7 @@ import Button from "@/libs/ui/buttons/button"
 import { DragDropImage } from "../drag-drop/drag-drop-image"
 import { DragDropMedia } from "../drag-drop/drag-drop-audio"
 import InputSelect from "@/libs/ui/input/input-select"
+import SearchSelect from "@/libs/ui/input/debounce-select"
 
 const UploadModal = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -86,13 +87,13 @@ const UploadModal = () => {
   }
 
   return (
-    <Modal title="Add a song" description="Upload an mp3 file" isOpen={uploadModal.isOpen} onChange={onChange}>
+    <Modal title="Upload your music" className="" isOpen={uploadModal.isOpen} onChange={onChange}>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-4">
-        <Input id="title" disabled={isLoading} {...register("title", { required: true })} placeholder="Song title" />
-        <Input id="author" disabled={isLoading} {...register("author", { required: true })} placeholder="Song author" />
-        <div>
-          <div className="pb-1">Select a song file</div>
-          {/* <Input
+        <div className="grid grid-cols-2 gap-4">
+          <div className="flex flex-col gap-y-4">
+            <div>
+              <div className="">Select a song file</div>
+              {/* <Input
             placeholder="test"
             disabled={isLoading}
             type="file"
@@ -100,21 +101,21 @@ const UploadModal = () => {
             id="song"
             {...register("song", { required: true })}
           /> */}
-          <DragDropImage
-            title={"upload image"}
-            // image={banner_images?.images.bannerImage}
-            // callBackImageUpload={(image) => handleUploadImageAction(image, "bannerImage", "images")}
-          />
-        </div>
-        <InputSelect />
-        <div>
-          <div className="pb-1">Select an image</div>
-          <DragDropMedia
-            title={"upload image"}
-            // image={banner_images?.images.bannerImage}
-            // callBackImageUpload={(image) => handleUploadImageAction(image, "bannerImage", "images")}
-          />
-          {/* <Input
+              <DragDropImage
+              // title={"upload image"}
+              // image={banner_images?.images.bannerImage}
+              // callBackImageUpload={(image) => handleUploadImageAction(image, "bannerImage", "images")}
+              />
+            </div>
+
+            <div>
+              <label className="">Select an image of song</label>
+              <DragDropMedia
+              // title={"upload image"}
+              // image={banner_images?.images.bannerImage}
+              // callBackImageUpload={(image) => handleUploadImageAction(image, "bannerImage", "images")}
+              />
+              {/* <Input
             placeholder="test"
             disabled={isLoading}
             type="file"
@@ -122,9 +123,38 @@ const UploadModal = () => {
             id="image"
             {...register("image", { required: true })}
           /> */}
+            </div>
+          </div>
+          <div className="flex flex-col gap-y-4">
+            <div className="flex flex-col gap-y-2">
+              <label className="text-neutral-300">Song title</label>
+              <Input
+                id="title"
+                disabled={isLoading}
+                {...register("title", { required: true })}
+                placeholder=".e.g Sau loi tu khuoc"
+              />
+            </div>
+            <div className="flex justify-between gap-x-4">
+              <div className="flex flex-col gap-y-2">
+                <label className="text-neutral-300">Collaborator</label>
+                <Input
+                  id="artist"
+                  disabled={isLoading}
+                  {...register("artist", { required: true })}
+                  placeholder="Song artists"
+                />
+              </div>
+              <div>
+                <label className="text-neutral-300">Album</label>
+                <InputSelect />
+                <SearchSelect />
+              </div>
+            </div>
+          </div>
         </div>
         <Button disabled={isLoading} type="submit">
-          Create
+          Publish
         </Button>
       </form>
     </Modal>
