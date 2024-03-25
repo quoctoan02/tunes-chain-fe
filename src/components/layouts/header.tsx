@@ -145,7 +145,9 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
               Log in
             </Button>
           </div>
-          <ConnectWalletWrapper requiredLogin={true}>
+          <ConnectWalletWrapper
+          // requiredLogin={true}
+          >
             <Dropdown
               menu={{
                 items: [

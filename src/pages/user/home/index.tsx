@@ -7,7 +7,6 @@ import { useEffect, useState } from "react"
 import { AlbumService } from "@/services/album.service"
 import { ArtistService } from "@/services/artist.service"
 import { Service } from "@/services/app.service"
-import SelectDemo from "@/libs/ui/input/input-select"
 import SearchSelect from "@/libs/ui/input/debounce-select"
 import InputSelect from "@/libs/ui/input/input-select"
 
@@ -57,7 +56,7 @@ const HomePage: React.FC<HomePageProps> = ({ className }) => {
         >
           Welcome back
         </h1>
-        <InputSelect className="bg-transparent text-black" />
+        <InputSelect />
         <SearchSelect />
         <div
           className="

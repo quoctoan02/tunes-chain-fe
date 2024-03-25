@@ -47,7 +47,7 @@ function DebounceSelect<ValueType extends { key?: string; label: React.ReactNode
       onSearch={debounceFetcher}
       notFoundContent={fetching ? <Spin size="small" /> : null}
       options={options}
-      className={twMerge(props.className, `border-none bg-neutral-800 text-black outline-none hover:text-white`)}
+      //   className={twMerge(props.className, `border-none bg-neutral-800 text-black outline-none hover:text-white`)}
       {...props}
     />
   )
@@ -85,7 +85,7 @@ const SearchSelect: React.FC = () => {
         setValue(newValue as UserValue[])
       }}
       style={{ width: "100%" }}
-      className="bg-white"
+      // className="bg-white"
       //   className="bg-neutral-800 outline-none"
     />
   )
