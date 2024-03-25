@@ -19,7 +19,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onChange, title, description, chi
           className="
             fixed 
             inset-0 
-            z-20 
+            z-50
             bg-neutral-900/90
             backdrop-blur-sm
           "
@@ -27,10 +27,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onChange, title, description, chi
         <Dialog.Content
           className={twMerge(
             `
-            fixed 
+             fixed
             left-[50%] 
             top-[50%] 
-            z-20 
+            z-[100] 
             h-full 
             max-h-full 
             w-fit 

@@ -125,7 +125,7 @@ const UploadModal = () => {
           /> */}
             </div>
           </div>
-          <div className="flex flex-col gap-y-4">
+          <div className="flex flex-col gap-y-4 ">
             <div className="flex flex-col gap-y-2">
               <label className="text-neutral-300">Song title</label>
               <Input
@@ -135,7 +135,7 @@ const UploadModal = () => {
                 placeholder=".e.g Sau loi tu khuoc"
               />
             </div>
-            <div className="flex justify-between gap-x-4">
+            <div className="flex items-center justify-between gap-x-4">
               <div className="flex flex-col gap-y-2">
                 <label className="text-neutral-300">Collaborator</label>
                 <Input
@@ -145,11 +145,14 @@ const UploadModal = () => {
                   placeholder="Song artists"
                 />
               </div>
-              <div>
+              <div className="flex flex-col gap-y-2">
                 <label className="text-neutral-300">Album</label>
                 <InputSelect />
-                <SearchSelect />
               </div>
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <label className="text-neutral-300">Add your music genres</label>
+              <InputSelect />
             </div>
           </div>
         </div>

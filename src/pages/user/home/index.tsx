@@ -57,7 +57,6 @@ const HomePage: React.FC<HomePageProps> = ({ className }) => {
           Welcome back
         </h1>
         <InputSelect />
-        <SearchSelect />
         <div
           className="
               mt-4 

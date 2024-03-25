@@ -67,7 +67,11 @@ const AntProvider: FC<AntProviderProps> = ({ children }) => {
             //   activeBorderColor: tailwindColors[theme].primary[500],
           },
           Select: {
-            lineHeight: 3,
+            // zIndexBase: 10000,
+            // zIndexPopup: 10000,
+            // zIndexPopupBase: 10000,
+            // lineHeight: 3,
+            controlHeight: 46,
             multipleItemBg: tailwindColors.dark.neutral[600],
             optionSelectedBg: tailwindColors.dark.neutral[600],
           },
@@ -202,7 +206,7 @@ const tokenTheme: AntTokenTheme = {
     colorTextDisabled: tailwindColors.dark.neutral[600],
     // colorBorder: tailwindColors.dark.neutral[400],
     colorBorder: "none",
-    colorTextPlaceholder: tailwindColors.dark.neutral[700],
+    colorTextPlaceholder: tailwindColors.dark.neutral[400],
     colorBgLayout: tailwindColors.dark.neutral[800],
 
     // colorLinkHover: tailwindColors.dark.slate[700],

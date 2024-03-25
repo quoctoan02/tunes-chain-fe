@@ -5,6 +5,8 @@ import { FaFacebook } from "react-icons/fa"
 import Button from "@/libs/ui/buttons/button"
 import Input from "@/libs/ui/input/input"
 import { useNavigate } from "react-router-dom"
+import { Service } from "@/services/app.service"
+import { toast } from "react-toastify"
 
 const LoginPage: React.FC = () => {
   const {
@@ -14,9 +16,11 @@ const LoginPage: React.FC = () => {
   } = useForm()
 
   const navigate = useNavigate()
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     // Xử lý đăng nhập ở đây
-    console.log(data)
+    await Service.auth.loginEmail(data.email, data.password)
+    toast.success("Login account successfully")
+    navigate("/")
   }
 
   return (
@@ -75,12 +79,12 @@ const LoginPage: React.FC = () => {
             Login
           </Button>
         </form>
-        <div className="mt-4 flex items-center justify-between">
+        {/* <div className="mt-4 flex items-center justify-between">
           <div className="w-full border-b border-gray-400"></div>
           <span className="text-neutral-500">or</span>
           <div className="w-full border-b border-gray-400"></div>
-        </div>
-        <div className="mt-4 flex items-center justify-center space-x-4">
+        </div> */}
+        {/* <div className="mt-4 flex items-center justify-center space-x-4">
           <button className="flex items-center rounded-md bg-blue-700 px-4 py-2 text-white">
             <FcGoogle className="mr-2" />
             Login with Google
@@ -89,7 +93,7 @@ const LoginPage: React.FC = () => {
             <FaFacebook className="mr-2" />
             Login with Facebook
           </button>
-        </div>
+        </div> */}
         <div className="mt-4 flex justify-between">
           <button className="text-blue-500 hover:underline">Forgot Password?</button>
           <button className="text-blue-500 hover:underline" onClick={() => navigate("/signup")}>
