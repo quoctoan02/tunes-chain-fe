@@ -17,7 +17,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId, className, isHide = tru
   // const {
   //   supabaseClient
   // } = useSessionContext();
-  // const authModal = useAuthModal();
+  // const loginModal = useLoginModal();
   // const { user } = useUser();
 
   const [isLiked, setIsLiked] = useState<boolean>(false)
@@ -49,7 +49,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId, className, isHide = tru
     // onClick(!isLiked)
     setIsLiked(!isLiked)
     //   if (!user) {
-    //     return authModal.onOpen();
+    //     return loginModal.onOpen();
     //   }
 
     //   if (isLiked) {

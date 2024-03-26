@@ -10,7 +10,7 @@ interface RecommendMediaItemProps {
 const RecommendMediaItem: React.FC<RecommendMediaItemProps> = ({ data }) => {
   // const onClick = () => {
   //   if (!user) {
-  //     return authModal.onOpen();
+  //     return loginModal.onOpen();
   //   }
 
   //   router.push(href);

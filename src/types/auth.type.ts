@@ -5,10 +5,7 @@ export interface UserInfo {
   address?: Address
   email?: string
   name?: string
-  username?: string
-  fullName?: string
   avatar?: string
-  mobile?: string
   ref?: string
   type?: number
   status?: number
@@ -20,8 +17,9 @@ export interface UserInfo {
 
 export interface User extends UserInfo {
   login(walletClient: WalletClient): Promise<boolean>
+  loginEmail(email: string, password: string): Promise<boolean>
   logout(): void
-  refreshUserInfo(): void
+  refreshUserInfo(): Promise<void>
   reset(): void
 }
 

@@ -10,6 +10,7 @@ import { Service } from "@/services/app.service"
 import { User } from "@/types/auth.type"
 import { toastWeb3Error } from "@/utils/toast"
 import { t } from "i18next"
+import { lowerCase } from "lodash"
 
 export const useUserStore = create<User>()(
   devtools(
@@ -21,9 +22,8 @@ export const useUserStore = create<User>()(
               token: undefined,
               id: undefined,
               email: undefined,
-              username: undefined,
-              address: undefined,
               name: undefined,
+              address: undefined,
             })
           },
 
@@ -65,6 +65,31 @@ export const useUserStore = create<User>()(
               return false
             } finally {
               toast.dismiss("sign-message")
+            }
+          },
+          async loginEmail(email, password) {
+            const { token, email: currentEmail } = get()
+
+            const isExpired = token && jwtDecode<{ exp: number }>(token).exp * 1000 <= Date.now()
+            const isInvalidToken = !token || isExpired
+            const isKeepedEmail = currentEmail && lowerCase(currentEmail) === lowerCase(email)
+            if (isKeepedEmail && !isInvalidToken) {
+              return true
+            }
+
+            try {
+              const { data, statusText } = await Service.auth.login(email, password)
+              if (!data) {
+                toast.error(statusText)
+                return false
+              }
+              toast.success(t("Logged in successfully"), { toastId: "login-successfully" })
+              const { userInfo, token } = data
+              set({ ...userInfo, token })
+              return true
+            } catch (err) {
+              toast.error(t("Logged in failed"), { toastId: "login-failed" })
+              return false
             }
           },
 

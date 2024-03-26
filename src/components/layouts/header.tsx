@@ -4,7 +4,6 @@ import { HiHome } from "react-icons/hi"
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx"
 import Button from "../../libs/ui/buttons/button"
 import { useNavigate } from "react-router-dom"
-import useAuthModal from "@/hooks/auth/use-auth-modal"
 import SearchInput from "@/libs/ui/input/seach-input"
 import useSearchInputStore from "@/hooks/stores/use-search-input-store"
 import useUploadModal from "@/hooks/upload/use-upload-modal"
@@ -170,6 +169,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
         </div>
         {/* )} */}
       </div>
+      {/* )} */}
     </div>
   )
 }
