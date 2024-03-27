@@ -4,13 +4,13 @@ import React, { useState } from "react"
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 import { toast } from "react-toastify"
 import useUploadModal from "@/hooks/upload/use-upload-modal"
-import Modal from "./modal"
 import Input from "@/libs/ui/input/input"
 import Button from "@/libs/ui/buttons/button"
 import { DragDropImage } from "../drag-drop/drag-drop-image"
 import { DragDropMedia } from "../drag-drop/drag-drop-audio"
 import InputSelect from "@/libs/ui/input/input-select"
 import SearchSelect from "@/libs/ui/input/debounce-select"
+import Modal from "@/libs/ui/modal"
 
 const UploadModal = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -25,11 +25,10 @@ const UploadModal = () => {
     },
   })
 
-  const onChange = (open: boolean) => {
-    if (!open) {
-      reset()
-      uploadModal.onClose()
-    }
+  const onClose = () => {
+    // reset()
+    uploadModal.onClose()
+    console.log(uploadModal.isOpen)
   }
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
@@ -87,9 +86,9 @@ const UploadModal = () => {
   }
 
   return (
-    <Modal title="Upload your music" className="" isOpen={uploadModal.isOpen} onChange={onChange}>
+    <Modal title="Upload your music" className="" open={true} onCancel={() => onClose()}>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid max-w-fit grid-cols-2 gap-4">
           <div className="flex flex-col gap-y-4">
             <div>
               <div className="">Select a song file</div>
@@ -125,7 +124,7 @@ const UploadModal = () => {
           /> */}
             </div>
           </div>
-          <div className="flex flex-col gap-y-4 ">
+          <div className="flex flex-col  gap-y-4">
             <div className="flex flex-col gap-y-2">
               <label className="text-neutral-300">Song title</label>
               <Input

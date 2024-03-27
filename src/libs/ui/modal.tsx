@@ -6,7 +6,7 @@ interface ModalProps extends AntModalProps {}
 
 const Modal: FC<ModalProps> = ({ children, ...props }) => {
   return (
-    <AntModal footer={false} destroyOnClose {...props} className={cn("pb-0", props.className)}>
+    <AntModal footer={false} {...props} className={cn("transition", props.className)} centered>
       {children}
     </AntModal>
   )

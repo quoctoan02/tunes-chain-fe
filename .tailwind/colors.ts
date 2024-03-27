@@ -43,7 +43,7 @@ const config = {
     secondary: colors.emerald[500],
     body: colors.neutral[950],
     component: colors.neutral[700],
-    modal: colors.gray[800],
+    modal: colors.neutral[800],
     table: colors.zinc[900],
     muted: colors.neutral[800],
     content: colors.white,

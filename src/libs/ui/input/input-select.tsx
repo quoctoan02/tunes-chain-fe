@@ -38,8 +38,8 @@ const InputSelect: React.FC<InputSelectProps> = ({ options, onChange, onSearch, 
       mode={"multiple"}
       onSearch={(value) => setValue(value)}
       style={style}
-      className="z-30 min-w-[200px]"
-      onChange={handleOnChange}
+      className="min-w-[200px]"
+      // onChange={handleOnChange}
       placeholder={placeholder}
       maxLength={5}
       // optionFilterProp="children"

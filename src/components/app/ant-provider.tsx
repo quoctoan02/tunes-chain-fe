@@ -95,6 +95,8 @@ const AntProvider: FC<AntProviderProps> = ({ children }) => {
           Modal: {
             contentBg: tailwindColors[theme].modal,
             headerBg: "transparent",
+            titleFontSize: 24,
+            titleLineHeight: 2,
             // footerBg: '',
           },
           Tooltip: {
