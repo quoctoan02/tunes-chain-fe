@@ -3,6 +3,7 @@ export const storagePrefix = "persited" as const
 export const storageKeyConfigs = {
   appSettings: "app-settings",
   user: "user",
+  artist: "artist",
   client: "client",
   tokens: "tokens",
 }

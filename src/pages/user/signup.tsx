@@ -20,9 +20,9 @@ const SignupPage: React.FC = () => {
     console.log("🚀 ~ onSubmit ~ data:", data)
     // Xử lý đăng ký ở đây
 
-    await Service.auth.signup(data.email, data.password, data.name)
-    toast.success("Sign up account successfully")
-    navigate("/login")
+    // await Service.auth.signup(data.email, data.password, data.name)
+    // toast.success("Sign up account successfully")
+    // navigate("/login")
   }
 
   return (

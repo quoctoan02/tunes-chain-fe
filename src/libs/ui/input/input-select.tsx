@@ -16,8 +16,17 @@ interface InputSelectProps {
   mode?: "multiple" | "tags"
   style?: React.CSSProperties
   placeholder?: string
+  className?: string
 }
-const InputSelect: React.FC<InputSelectProps> = ({ options, onChange, onSearch, mode, placeholder, style }) => {
+const InputSelect: React.FC<InputSelectProps> = ({
+  options,
+  onChange,
+  onSearch,
+  mode,
+  placeholder,
+  style,
+  className,
+}) => {
   const [isLoading, setIsLoading] = useState(false)
 
   const [value, setValue] = useState<string>("")
@@ -38,8 +47,7 @@ const InputSelect: React.FC<InputSelectProps> = ({ options, onChange, onSearch, 
       mode={"multiple"}
       onSearch={(value) => setValue(value)}
       style={style}
-      className="min-w-[200px]"
-      // onChange={handleOnChange}
+      onChange={handleOnChange}
       placeholder={placeholder}
       maxLength={5}
       // optionFilterProp="children"
@@ -48,7 +56,7 @@ const InputSelect: React.FC<InputSelectProps> = ({ options, onChange, onSearch, 
       // filterSort={(optionA, optionB) =>
       //   (optionA?.label ?? "").toLowerCase().localeCompare((optionB?.label ?? "").toLowerCase())
       // }
-      // className={twMerge(``, className)}
+      className={twMerge(`min-w-[100px]`, className)}
       options={[
         {
           value: "1",

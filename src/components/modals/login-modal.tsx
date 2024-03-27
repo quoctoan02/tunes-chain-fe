@@ -9,10 +9,11 @@ import Input from "@/libs/ui/input/input"
 import { useNavigate } from "react-router-dom"
 import { Service } from "@/services/app.service"
 import { toast } from "react-toastify"
-import Modal from "./modal"
 import useLoginModal from "@/hooks/auth/use-login-modal"
-import { DragDropImage } from "../drag-drop/drag-drop-image"
-import { DragDropMedia } from "../drag-drop/drag-drop-audio"
+import Modal from "@/libs/ui/modal"
+import { useUserStore } from "@/hooks/stores/use-user-store"
+import useSignupModal from "@/hooks/auth/use-signup-modal"
+import { useArtistStore } from "@/hooks/stores/use-artist-store"
 
 const LoginModal = () => {
   const { onClose, isOpen } = useLoginModal()
@@ -24,28 +25,30 @@ const LoginModal = () => {
   //   }
   // }, [session, router, onClose]);
 
-  const onChange = (open: boolean) => {
-    if (!open) {
-      onClose()
-    }
-  }
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm()
-
-  const navigate = useNavigate()
+  const { loginEmail, token, address, logout } = useArtistStore()
   const onSubmit = async (data: any) => {
+    console.log("🚀 ~ onSubmit ~ data:", data)
     // Xử lý đăng nhập ở đây
-    await Service.auth.loginEmail(data.email, data.password)
-    toast.success("Login account successfully")
-    navigate("/")
+    if (await loginEmail(data.email, data.password)) {
+      onClose()
+      reset()
+    }
+  }
+  const signupModal = useSignupModal()
+  const handleRedirectSignup = () => {
+    onClose()
+    signupModal.onOpen()
   }
   return (
-    <Modal title="Welcome back" description="Login to your account." isOpen={isOpen} onChange={onChange}>
-      <div className="rounded-lg bg-neutral-800 p-8 shadow-md">
-        <h2 className="mb-6 text-2xl font-semibold">Login to Spotify</h2>
+    <Modal open={isOpen} width={"fit-content"} onCancel={onClose}>
+      <div className="p-8">
+        <h3 className="mb-6 text-2xl font-semibold">Login to Tunes chain</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <label htmlFor="email" className="text-md block font-medium text-neutral-400">
@@ -95,7 +98,7 @@ const LoginModal = () => {
         </div> */}
         <div className="mt-4 flex justify-between">
           <button className="text-blue-500 hover:underline">Forgot Password?</button>
-          <button className="text-blue-500 hover:underline" onClick={() => navigate("/signup")}>
+          <button className="text-blue-500 hover:underline" onClick={handleRedirectSignup}>
             Sign Up
           </button>
         </div>

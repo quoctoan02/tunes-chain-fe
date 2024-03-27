@@ -67,31 +67,6 @@ export const useUserStore = create<User>()(
               toast.dismiss("sign-message")
             }
           },
-          async loginEmail(email, password) {
-            const { token, email: currentEmail } = get()
-
-            const isExpired = token && jwtDecode<{ exp: number }>(token).exp * 1000 <= Date.now()
-            const isInvalidToken = !token || isExpired
-            const isKeepedEmail = currentEmail && lowerCase(currentEmail) === lowerCase(email)
-            if (isKeepedEmail && !isInvalidToken) {
-              return true
-            }
-
-            try {
-              const { data, statusText } = await Service.auth.login(email, password)
-              if (!data) {
-                toast.error(statusText)
-                return false
-              }
-              toast.success(t("Logged in successfully"), { toastId: "login-successfully" })
-              const { userInfo, token } = data
-              set({ ...userInfo, token })
-              return true
-            } catch (err) {
-              toast.error(t("Logged in failed"), { toastId: "login-failed" })
-              return false
-            }
-          },
 
           logout() {
             get().reset()

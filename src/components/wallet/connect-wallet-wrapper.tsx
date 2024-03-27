@@ -1,33 +1,36 @@
 import { jwtDecode } from "jwt-decode"
 import { FC, ReactElement, cloneElement } from "react"
-
+import { Dropdown } from "antd"
 import { useClientStore } from "@/hooks/stores/use-client-store"
 import { useUserStore } from "@/hooks/stores/use-user-store"
 import { useActive } from "@/hooks/wallet/use-active"
 import { Button, ButtonProps } from "@/libs/ui/button-demo"
 import { cn } from "@/utils/classnames"
+import { truncateAddress } from "@/utils/string"
+import { BiChevronDown } from "react-icons/bi"
+import AccountInfo from "../auth/account-info"
 
 interface ConnectWalletWrapperProps extends ButtonProps {
-  children?: ReactElement
   className?: string
   requiredLogin?: boolean
 }
 
 export const ConnectWalletWrapper: FC<ConnectWalletWrapperProps> = ({
-  children,
   className,
   requiredLogin = false,
   ...buttonProps
 }) => {
-  const { account, isConnecting, connectWallet } = useActive()
+  const { account, isConnecting, connectWallet, disconnect } = useActive()
   const { login, token } = useUserStore()
   const { walletClient } = useClientStore()
 
-  const cloneButtonElement =
-    children &&
-    cloneElement(children, {
-      className: cn(className, children.props?.className),
-    })
+  // const cloneButtonElement = (
+
+  // )
+  // children &&
+  // cloneElement(children, {
+  //   className: cn(className, children.props?.className),
+  // })
 
   if (!account) {
     return (
@@ -47,9 +50,8 @@ export const ConnectWalletWrapper: FC<ConnectWalletWrapperProps> = ({
         </Button>
       )
     } else {
-      return <>{cloneButtonElement}</>
+      return <AccountInfo />
     }
   }
-
-  return <>{cloneButtonElement}</>
+  return <AccountInfo />
 }

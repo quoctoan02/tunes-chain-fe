@@ -6,7 +6,6 @@ export interface UserInfo {
   email?: string
   name?: string
   avatar?: string
-  ref?: string
   type?: number
   status?: number
   lastActive?: string
@@ -14,12 +13,40 @@ export interface UserInfo {
   updatedTime?: string
   token?: string
 }
+export interface ArtistInfo {
+  id?: number
+  address?: Address
+  email?: string
+  name?: string
+  avatar?: string
+  background?: string
+  genres?: string[]
+  type?: number
+  status?: number
+  createdTime?: string
+  updatedTime?: string
+  token?: string
+}
 
+export interface SignupData {
+  email: string
+  name: string
+  avatar: string
+  background?: string
+  genres: string[]
+  password: string
+}
 export interface User extends UserInfo {
   login(walletClient: WalletClient): Promise<boolean>
-  loginEmail(email: string, password: string): Promise<boolean>
   logout(): void
   refreshUserInfo(): Promise<void>
+  reset(): void
+}
+export interface Artist extends ArtistInfo {
+  loginEmail(email: string, password: string): Promise<boolean>
+  signup(data: SignupData): Promise<boolean>
+  logout(): void
+  refreshArtistInfo(): Promise<void>
   reset(): void
 }
 

@@ -3,7 +3,7 @@
 import React, { useState } from "react"
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 import { toast } from "react-toastify"
-import useUploadModal from "@/hooks/upload/use-upload-modal"
+import useUploadModal from "@/hooks/render/use-upload-modal"
 import Input from "@/libs/ui/input/input"
 import Button from "@/libs/ui/buttons/button"
 import { DragDropImage } from "../drag-drop/drag-drop-image"
@@ -16,14 +16,11 @@ const UploadModal = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   const uploadModal = useUploadModal()
-  const { register, handleSubmit, reset } = useForm<FieldValues>({
-    defaultValues: {
-      author: "",
-      title: "",
-      song: null,
-      image: null,
-    },
-  })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
 
   const onClose = () => {
     // reset()
@@ -86,10 +83,10 @@ const UploadModal = () => {
   }
 
   return (
-    <Modal title="Upload your music" className="" open={true} onCancel={() => onClose()}>
+    <Modal title="Upload your music ???" width={"fit-content"} onCancel={onClose} open={uploadModal.isOpen}>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-4">
-        <div className="grid max-w-fit grid-cols-2 gap-4">
-          <div className="flex flex-col gap-y-4">
+        <div className="flex gap-x-8">
+          <div className="flex flex-col justify-center gap-y-4">
             <div>
               <div className="">Select a song file</div>
               {/* <Input
@@ -124,8 +121,8 @@ const UploadModal = () => {
           /> */}
             </div>
           </div>
-          <div className="flex flex-col  gap-y-4">
-            <div className="flex flex-col gap-y-2">
+          <div className="flex w-80 flex-col gap-y-6">
+            <div className="flex w-full flex-col gap-y-1">
               <label className="text-neutral-300">Song title</label>
               <Input
                 id="title"
@@ -133,25 +130,21 @@ const UploadModal = () => {
                 {...register("title", { required: true })}
                 placeholder=".e.g Sau loi tu khuoc"
               />
+              {errors.title && <span className="text-sm text-red-500">Title is required</span>}
             </div>
-            <div className="flex items-center justify-between gap-x-4">
-              <div className="flex flex-col gap-y-2">
-                <label className="text-neutral-300">Collaborator</label>
-                <Input
-                  id="artist"
-                  disabled={isLoading}
-                  {...register("artist", { required: true })}
-                  placeholder="Song artists"
-                />
-              </div>
-              <div className="flex flex-col gap-y-2">
-                <label className="text-neutral-300">Album</label>
-                <InputSelect />
-              </div>
+            {/* <div className="flex items-center justify-between gap-x-4"> */}
+            <div className="flex w-full flex-col gap-y-1">
+              <label className="text-neutral-300">Collaborator</label>
+              <InputSelect placeholder="Select your collaborator" />
             </div>
-            <div className="flex flex-col gap-y-2">
+            <div className="flex w-full flex-col gap-y-1">
+              <label className="text-neutral-300">Album</label>
+              <InputSelect placeholder="Select your album" />
+            </div>
+            {/* </div> */}
+            <div className="flex w-full flex-col gap-y-1">
               <label className="text-neutral-300">Add your music genres</label>
-              <InputSelect />
+              <InputSelect placeholder="Select your collaborator" />
             </div>
           </div>
         </div>

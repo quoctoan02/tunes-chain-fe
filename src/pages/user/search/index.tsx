@@ -1,6 +1,6 @@
 import Header from "@/components/layouts/header"
 import { useShowSearchInput } from "@/hooks/render/use-show-search-input"
-import useSearchInputStore from "@/hooks/stores/use-search-input-store"
+import useSearchInputStore from "@/hooks/render/use-search-input-store"
 import SearchInput from "@/libs/ui/input/seach-input"
 import { FC, useEffect } from "react"
 

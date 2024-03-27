@@ -158,10 +158,10 @@ const defaultTheme = (theme: Theme): Partial<AliasToken> => {
 
     // Config colors
     colorTextBase: tailwindColors[theme].content,
-    colorPrimaryText: tailwindColors[theme].primary[500],
-    colorPrimaryHover: tailwindColors[theme].primary[600],
-    colorPrimaryBorder: tailwindColors[theme].primary[500],
-    colorPrimary: tailwindColors[theme].primary[500],
+    colorPrimaryText: tailwindColors[theme].emerald[500],
+    colorPrimaryHover: tailwindColors[theme].emerald[600],
+    colorPrimaryBorder: tailwindColors[theme].emerald[500],
+    colorPrimary: tailwindColors[theme].emerald[500],
 
     colorText: tailwindColors[theme].content,
     colorBgElevated: tailwindColors[theme].component,

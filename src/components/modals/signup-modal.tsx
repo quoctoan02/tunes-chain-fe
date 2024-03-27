@@ -1,62 +1,61 @@
-"use client"
-
-import React, { useEffect } from "react"
+import React, { useState } from "react"
 import { useForm } from "react-hook-form"
-import { FcGoogle } from "react-icons/fc"
-import { FaFacebook } from "react-icons/fa"
 import Button from "@/libs/ui/buttons/button"
 import Input from "@/libs/ui/input/input"
-import { useNavigate } from "react-router-dom"
-import { Service } from "@/services/app.service"
-import { toast } from "react-toastify"
-import Modal from "./modal"
+import Modal from "@/libs/ui/modal"
+import { useArtistStore } from "@/hooks/stores/use-artist-store"
 import useLoginModal from "@/hooks/auth/use-login-modal"
-import { DragDropImage } from "../drag-drop/drag-drop-image"
-import { DragDropMedia } from "../drag-drop/drag-drop-audio"
+import useSignupModal from "@/hooks/auth/use-signup-modal"
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai" // Import icon con mắt
 
 const SignupModal = () => {
-  const { onClose, isOpen } = useLoginModal()
-
-  // useEffect(() => {
-  //   if (session) {
-  //     router.refresh();
-  //     onClose();
-  //   }
-  // }, [session, router, onClose]);
-
-  const onChange = (open: boolean) => {
-    if (!open) {
-      onClose()
-    }
-  }
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false) // State để điều khiển ẩn/hiện confirm password
+  const { onClose, isOpen } = useSignupModal()
+  const loginModal = useLoginModal()
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
+    reset,
   } = useForm()
+  const { token, signup } = useArtistStore()
 
-  const navigate = useNavigate()
   const onSubmit = async (data: any) => {
-    // Xử lý đăng nhập ở đây
-    await Service.auth.loginEmail(data.email, data.password)
-    toast.success("Login account successfully")
-    navigate("/")
+    delete data.confirmPassword
+    data.avatar = "aaa"
+    data.genres = ["abc"]
+    console.log("🚀 ~ onSubmit ~ data:", data)
+
+    if (await signup(data)) {
+      handleRedirectToLogin()
+      reset()
+    }
   }
+
+  const handleRedirectToLogin = () => {
+    onClose()
+    loginModal.onOpen()
+  }
+
   return (
-    <Modal title="Welcome back" description="Login to your account." isOpen={isOpen} onChange={onChange}>
-      <div className="rounded-lg bg-neutral-800 p-8 shadow-md">
-        <h2 className="mb-6 text-2xl font-semibold">Login to Spotify</h2>
+    <Modal open={isOpen} width={"fit-content"} onCancel={onClose}>
+      <div className="p-8">
+        <h1 className="mb-6 text-center text-3xl font-semibold">Sign up for Tunes chain</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="mb-4">
+            <label htmlFor="name" className="text-md block font-medium text-neutral-400">
+              Display Name
+            </label>
+            <Input id="name" {...register("name", { required: true })} />
+            {errors.name && <span className="text-sm text-red-500">Display name is required</span>}
+          </div>
           <div className="mb-4">
             <label htmlFor="email" className="text-md block font-medium text-neutral-400">
               Email Address
             </label>
-            <Input
-              type="email"
-              id="email"
-              {...register("email", { required: true })}
-              // className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+            <Input type="email" id="email" {...register("email", { required: true })} />
             {errors.email && <span className="text-sm text-red-500">Email is required</span>}
           </div>
           <div className="mb-4">
@@ -64,39 +63,43 @@ const SignupModal = () => {
               Password
             </label>
             <Input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               {...register("password", { required: true })}
-              // className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+            {/* <button type="button" className="absolute right-3 top-2" onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+            </button> */}
             {errors.password && <span className="text-sm text-red-500">Password is required</span>}
           </div>
-          <Button
-            type="submit"
-            // className="w-full rounded-md bg-green-500 px-4 py-2 text-white hover:bg-green-600"
-          >
-            Login
-          </Button>
+          <div className="mb-4">
+            <label htmlFor="confirmPassword" className="text-md block font-medium text-neutral-400">
+              Confirm Password
+            </label>
+            <Input
+              type={showConfirmPassword ? "text" : "password"} // Sử dụng state showConfirmPassword để điều khiển kiểu của ô confirm password
+              id="confirmPassword"
+              {...register("confirmPassword", {
+                required: true,
+                validate: (value) => value === watch("password") || "Passwords do not match",
+              })}
+            />
+            {/* <button
+              type="button"
+              className="absolute right-3 top-2"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            >
+              {showConfirmPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+            </button> */}
+            {errors.confirmPassword && (
+              <span className="text-sm text-red-500">{errors.confirmPassword.message as string}</span>
+            )}
+          </div>
+          <Button type="submit">Sign Up</Button>
         </form>
-        {/* <div className="mt-4 flex items-center justify-between">
-          <div className="w-full border-b border-gray-400"></div>
-          <span className="text-neutral-500">or</span>
-          <div className="w-full border-b border-gray-400"></div>
-        </div> */}
-        {/* <div className="mt-4 flex items-center justify-center space-x-4">
-          <button className="flex items-center rounded-md bg-blue-700 px-4 py-2 text-white">
-            <FcGoogle className="mr-2" />
-            Login with Google
-          </button>
-          <button className="flex items-center rounded-md bg-blue-900 px-4 py-2 text-white">
-            <FaFacebook className="mr-2" />
-            Login with Facebook
-          </button>
-        </div> */}
         <div className="mt-4 flex justify-between">
-          <button className="text-blue-500 hover:underline">Forgot Password?</button>
-          <button className="text-blue-500 hover:underline" onClick={() => navigate("/signup")}>
-            Sign Up
+          <button className="text-blue-500 hover:underline" onClick={handleRedirectToLogin}>
+            Already have an account? Login
           </button>
         </div>
       </div>

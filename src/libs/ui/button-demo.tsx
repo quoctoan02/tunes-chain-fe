@@ -12,7 +12,7 @@ const buttonVariants = cva(cn(""), {
       large: cn("h-12 text-xl"),
     },
     type: {
-      primary: cn("enabled:hover:bg-primary-600"),
+      primary: cn("enabled:hover:bg-primary-600 rounded-full"),
       secondary: cn(""),
       danger: cn(
         "enabled:bg-red-500 enabled:hover:bg-red-600 enabled:border-red-500 enabled:hover:!border-red-500 enabled:hover:!text-white",
@@ -57,7 +57,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       if (!onClick) return
 
       setIsLoading(true)
-      await onClick(e)
+      onClick(e)
       setIsLoading(false)
     }
 

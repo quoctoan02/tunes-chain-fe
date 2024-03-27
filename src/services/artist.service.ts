@@ -1,19 +1,13 @@
 import { http } from "@/libs/axios"
+import { ArtistInfo } from "@/types/auth.type"
 import { toastErrorResponse } from "@/utils/common"
 
 export class ArtistService {
-  async getInfo(id: number) {
-    try {
-      const res = await http.get("/artist/get", { params: { id } })
-
-      if (res?.data) {
-        return res.data
-      }
-    } catch (error) {
-      console.log("🚀 ~ ArtistService ~ getInfo ~ error:", error)
-      toastErrorResponse(error)
-      throw error
-    }
+  async getInfo() {
+    return http.get<{
+      artistInfo: ArtistInfo
+      token: string
+    }>("/artist/get")
   }
   async listAll() {
     try {

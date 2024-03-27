@@ -204,9 +204,9 @@ export const DragDropImage: FC<DragDropImageProps> = ({
         <div
           role="button"
           className={cn(
-            "flex h-[9.875rem] flex-row items-center justify-center overflow-hidden rounded-lg border border-dashed",
+            "flex h-[8rem] flex-row items-center justify-center overflow-hidden rounded-lg border border-dashed",
             dragActive ? "border-green-500" : "border-stone-300",
-            withBox ? withBox : "w-[19.75rem]",
+            withBox ? withBox : "w-[18rem]",
           )}
           onClick={function () {
             uploadRef.current.click()

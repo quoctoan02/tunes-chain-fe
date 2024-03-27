@@ -6,6 +6,7 @@ import { API_URL, API_URLS_FOR_CHAINS } from "@/configs/endpoints.config"
 import { useClientStore } from "@/hooks/stores/use-client-store"
 import { useUserStore } from "@/hooks/stores/use-user-store"
 import { toast } from "react-toastify"
+import { useArtistStore } from "@/hooks/stores/use-artist-store"
 
 export const http: AxiosInstance = axios.create({
   baseURL: API_URL,
@@ -14,8 +15,28 @@ export const http: AxiosInstance = axios.create({
 })
 
 function onRequestFulfilled(config: InternalAxiosRequestConfig) {
-  const { token } = useUserStore.getState()
+  console.log("🚀 ~ onRequestFulfilled ~ config:", config)
+  console.log("🚀 ~ onRequestFulfilled ~ config:", Object.keys(config))
+
+  let token = ""
   const { chain } = useClientStore.getState()
+
+  console.log("🚀 ~ onRequestFulfilled ~ config.url:", config.url?.split("/")[1])
+
+  switch (config.url?.split("/")[1]) {
+    case "artist": {
+      token = useArtistStore.getState().token as string
+      break
+    }
+    case "admin": {
+      token = useArtistStore.getState().token as string
+      break
+    }
+    default: {
+      token = useUserStore.getState().token as string
+      break
+    }
+  }
 
   if (chain) {
     const apiMatchedWithChain = API_URLS_FOR_CHAINS.TESTNET.chains.find(
@@ -62,7 +83,7 @@ function onResponseRejected(error: AxiosError) {
     error.response.statusText = data["errorMsg"] || data["errorCode"]
     error.response.data = null
   } else {
-    error.response!.statusText = "Connection lost"
+    error.response!.statusText = error.message
   }
   return Promise.resolve(error.response)
 }
