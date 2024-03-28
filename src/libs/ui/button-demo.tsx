@@ -8,7 +8,7 @@ const buttonVariants = cva(cn(""), {
   variants: {
     size: {
       small: cn("h-8 text-sm"),
-      middle: cn("h-10 text-lg"),
+      middle: cn("h-10 text-md"),
       large: cn("h-12 text-xl"),
     },
     type: {

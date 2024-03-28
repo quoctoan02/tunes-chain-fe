@@ -1,4 +1,5 @@
 import { useClientData } from "@/hooks/auth/use-client-data"
+import { useArtistStore } from "@/hooks/stores/use-artist-store"
 import { useUserStore } from "@/hooks/stores/use-user-store"
 import { useActive } from "@/hooks/wallet/use-active"
 import { Button } from "@/libs/ui/button-demo"
@@ -10,7 +11,8 @@ import { Address } from "viem"
 
 const AccountInfo = () => {
   const { account, isConnecting, connectWallet, disconnect } = useActive()
-  const { name, address, token, logout } = useClientData()
+  const { logout } = useArtistStore()
+  const { name, address, token } = useClientData()
   return (
     <div>
       <Dropdown
@@ -23,15 +25,8 @@ const AccountInfo = () => {
           ],
         }}
       >
-        <Button type="primary" className={"flex h-fit gap-x-2 py-1"} size="middle">
-          {name ? (
-            <div className="flex flex-col items-center">
-              <span className="">{name}</span>
-              <span className="text-sm">{truncateAddress(address as Address, 4)}</span>
-            </div>
-          ) : (
-            truncateAddress(address as Address, 4)
-          )}
+        <Button type="primary" className={"flex gap-x-2 py-1"} size="middle">
+          {name ? <span className="flex flex-col items-center">{name}</span> : truncateAddress(address as Address, 5)}
 
           <BiChevronDown className="text-xl" />
         </Button>

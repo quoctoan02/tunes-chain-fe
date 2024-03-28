@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useMemo, useState } from "react"
 import { Outlet } from "react-router-dom"
 
 import Player from "@/components/player/player"
@@ -7,10 +7,19 @@ import Center from "@/components/layouts/center"
 import Header from "@/components/layouts/header"
 import { twMerge } from "tailwind-merge"
 import useBgColorStore from "@/hooks/stores/use-bg-color-store"
+import { Role } from "@/types/auth.type"
+import { useRoleStore } from "@/hooks/stores/use-role-store"
 
-interface DefaultLayoutProps {}
+interface DefaultLayoutProps {
+  role: Role
+}
 
-const DefaultLayout: FC<DefaultLayoutProps> = () => {
+const DefaultLayout: FC<DefaultLayoutProps> = ({ role }) => {
+  const { setRole } = useRoleStore()
+  useMemo(() => {
+    console.log(role)
+    setRole(role)
+  }, [])
   const { color } = useBgColorStore()
   console.log("🚀 ~ color:", color)
   return (

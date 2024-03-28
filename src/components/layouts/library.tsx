@@ -72,7 +72,7 @@ const Library = () => {
         ))}
       </div>
       <div className="mt-4 h-full flex-1 flex-col gap-y-1 overflow-y-auto px-3">
-        <LibraryItem key={1} data={{ name: "Liked songs" }} type={MediaType.LikedSongs} />
+        {!isActiveType && <LibraryItem key={1} data={{ name: "Liked songs" }} type={MediaType.LikedSongs} />}
         {/* <LibraryItem data={{ title: "Nho em", type: MediaType.Playlist, artist: "tran hang", id: 1 }} /> */}
         {listMedia && listMedia.map((media) => <LibraryItem data={media} type={media.type} />)}
       </div>

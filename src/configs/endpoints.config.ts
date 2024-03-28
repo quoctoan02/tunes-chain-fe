@@ -1,7 +1,7 @@
 import { ENV, Env } from "./env.config"
 
-export const API_URLS = <const>{
-  [Env.development]: "http://localhost:8888",
+export const API_URLS: any = <const>{
+  [Env.development]: { user: "http://localhost:8888", artist: "http://localhost:9999" },
   [Env.staging]: "",
   [Env.production]: "",
 }

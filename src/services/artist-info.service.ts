@@ -1,8 +1,8 @@
 import { http } from "@/libs/axios"
-import { ArtistInfo } from "@/types/auth.type"
+import { ArtistInfo, Role } from "@/types/auth.type"
 import { toastErrorResponse } from "@/utils/common"
 
-export class ArtistService {
+export class ArtistInfoService {
   async getInfo() {
     return http.get<{
       artistInfo: ArtistInfo

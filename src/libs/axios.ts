@@ -7,9 +7,15 @@ import { useClientStore } from "@/hooks/stores/use-client-store"
 import { useUserStore } from "@/hooks/stores/use-user-store"
 import { toast } from "react-toastify"
 import { useArtistStore } from "@/hooks/stores/use-artist-store"
+import { Role } from "@/types/auth.type"
 
-export const http: AxiosInstance = axios.create({
-  baseURL: API_URL,
+export const http = axios.create({
+  baseURL: API_URL.user,
+  timeout: 60000,
+  headers: {},
+})
+export const httpArtist = axios.create({
+  baseURL: API_URL.artist,
   timeout: 60000,
   headers: {},
 })
@@ -90,3 +96,5 @@ function onResponseRejected(error: AxiosError) {
 
 http.interceptors.request.use(onRequestFulfilled)
 http.interceptors.response.use(onResponseFulfilled, onResponseRejected)
+httpArtist.interceptors.request.use(onRequestFulfilled)
+httpArtist.interceptors.response.use(onResponseFulfilled, onResponseRejected)

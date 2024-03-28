@@ -18,13 +18,14 @@ import PlaylistPage from "@/pages/user/playlist"
 import AlbumPage from "@/pages/user/album"
 import ExamplePage from "@/pages/example"
 import DemoLayout from "@/layouts/demo-layout"
+import { Role } from "@/types/auth.type"
 
 interface AppRoutesProps {}
 
 const routes: RouteObject[] = [
   // Routes with default layout
   {
-    element: <DefaultLayout />,
+    element: <DefaultLayout role={Role.User} />,
     children: [
       { path: routePath.home, element: <HomePage /> },
       { path: routePath.translation, element: <TranslationPage /> },
@@ -36,7 +37,7 @@ const routes: RouteObject[] = [
     ],
   },
   {
-    element: <ArtistLayout />,
+    element: <ArtistLayout role={Role.Artist} />,
     children: [
       { path: artistRoutePath.home, element: <AdminHomePage /> },
       { path: artistRoutePath.myMusic, element: <MyMusicPage /> },

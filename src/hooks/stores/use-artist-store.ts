@@ -11,6 +11,7 @@ import { Artist, SignupData } from "@/types/auth.type"
 import { toastWeb3Error } from "@/utils/toast"
 import { t } from "i18next"
 import { lowerCase } from "lodash"
+import { ArtistService } from "@/services/artist/app.service"
 
 export const useArtistStore = create<Artist>()(
   devtools(
@@ -38,7 +39,7 @@ export const useArtistStore = create<Artist>()(
             }
 
             try {
-              const { data, statusText } = await Service.auth.loginEmail(email, password)
+              const { data, statusText } = await ArtistService.auth.loginEmail(email, password)
               if (!data) {
                 toast.error(statusText)
                 return false
@@ -60,7 +61,7 @@ export const useArtistStore = create<Artist>()(
             // }
 
             try {
-              const { data, statusText } = await Service.auth.signup(artistData)
+              const { data, statusText } = await ArtistService.auth.signup(artistData)
               console.log("🚀 ~ signup ~ data:", data)
               if (!data) {
                 toast.error(statusText)

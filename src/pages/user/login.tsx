@@ -18,7 +18,7 @@ const LoginPage: React.FC = () => {
   const navigate = useNavigate()
   const onSubmit = async (data: any) => {
     // Xử lý đăng nhập ở đây
-    await Service.auth.loginEmail(data.email, data.password)
+    // await Service.auth.loginEmail(data.email, data.password)
     toast.success("Login account successfully")
     navigate("/")
   }

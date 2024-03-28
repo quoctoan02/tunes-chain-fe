@@ -4,9 +4,11 @@ import { useArtistStore } from "../stores/use-artist-store"
 import { useUserStore } from "../stores/use-user-store"
 import { Artist, User } from "@/types/auth.type"
 import { log } from "console"
+import { useRoleStore } from "../stores/use-role-store"
 
 export const useClientData = () => {
   const { pathname } = useLocation()
+  const { role } = useRoleStore()
   const [clientData, setClientData] = useState<Partial<Artist | User>>({
     email: "",
     address: "0x",
@@ -14,7 +16,7 @@ export const useClientData = () => {
     name: "",
   })
   useEffect(() => {
-    switch (pathname.split("/")[1]) {
+    switch (role) {
       case "artist": {
         setClientData(useArtistStore.getState())
 
@@ -32,7 +34,7 @@ export const useClientData = () => {
       }
     }
     return () => {}
-  }, [pathname.split("/")[1]])
+  }, [role])
 
   return clientData
 }

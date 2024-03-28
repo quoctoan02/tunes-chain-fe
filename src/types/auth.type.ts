@@ -51,7 +51,7 @@ export interface Artist extends ArtistInfo {
 }
 
 export enum Role {
-  Admin = "admin",
+  // Admin = "admin",
   Artist = "artist",
   User = "user",
 }

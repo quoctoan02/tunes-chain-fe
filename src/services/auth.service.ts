@@ -28,25 +28,4 @@ export class AuthService {
       },
     })
   }
-  async loginEmail(email: string, password: string) {
-    return http.request<{
-      artistInfo: User
-      token: string
-    }>({
-      method: "POST",
-      url: "/auth/login-email",
-      data: {
-        email,
-        password,
-      },
-    })
-  }
-
-  async signup(data: SignupData) {
-    return http.request({
-      method: "POST",
-      url: "/auth/signup",
-      data,
-    })
-  }
 }

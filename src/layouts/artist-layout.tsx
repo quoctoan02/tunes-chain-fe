@@ -1,13 +1,20 @@
 import Center from "@/components/layouts/artist/center"
 import SideBar from "@/components/layouts/artist/sidebar"
 import Header from "@/components/layouts/header"
+import { useRoleStore } from "@/hooks/stores/use-role-store"
 import { Role } from "@/types/auth.type"
-import { FC } from "react"
+import { FC, useMemo } from "react"
 import { Outlet } from "react-router-dom"
 
-interface ArtistLayoutProps {}
+interface ArtistLayoutProps {
+  role: Role
+}
 
-const DefaultLayout: FC<ArtistLayoutProps> = () => {
+const DefaultLayout: FC<ArtistLayoutProps> = ({ role }) => {
+  const { setRole } = useRoleStore()
+  useMemo(() => {
+    setRole(role)
+  }, [])
   return (
     // <div className="flex h-full flex-col">
     <div className="flex h-screen bg-black">
